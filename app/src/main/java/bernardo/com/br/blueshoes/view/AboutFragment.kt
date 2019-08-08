@@ -24,5 +24,5 @@ class AboutFragment : Fragment() {
             )
     }
 
-
+//asdasdasasdasdasd
 }
