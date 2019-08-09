@@ -83,9 +83,10 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginBottom">8dp</item>
-        <item name="android:textColor">@color/colorText</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/pathway_gothic_one_regular</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorText</item>
         <item name="android:textAllCaps">true</item>
     </style>
 
@@ -124,6 +125,7 @@
         <item name="android:paddingRight">7dp</item>
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:layout_marginStart">10dp</item>
+        <item name="android:background">@drawable/bg_orange_info</item>
         <item name="android:textColor">@color/colorOrangeInfo</item>
         <item name="android:textSize">12sp</item>
         <item name="android:maxLines">1</item>
