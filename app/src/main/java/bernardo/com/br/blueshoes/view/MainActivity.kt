@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.selection.StorageStrategy
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,9 +25,21 @@ import bernardo.com.br.blueshoes.domain.User
 import bernardo.com.br.blueshoes.util.NavMenuItemDetailsLookup
 import bernardo.com.br.blueshoes.util.NavMenuItemKeyProvider
 import bernardo.com.br.blueshoes.util.NavMenuItemPredicate
+import kotlinx.android.synthetic.main.app_bar.*
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity :
+    AppCompatActivity() {
+
+    companion object {
+        /**
+         * Para debug em LogCat durante desenvolvimento do
+         * projeto.
+         **/
+        const val LOG = "log-bs"
+
+        const val FRAGMENT_TAG = "frag-tag"
+    }
 
     val user = User(
         "Bernardo Perin",
@@ -56,6 +69,8 @@ class MainActivity : AppCompatActivity() {
         toggle.syncState()
 
         initNavMenu( savedInstanceState )
+
+        initFragment()
     }
 
     private fun initNavMenu( savedInstanceState: Bundle? ){
@@ -162,6 +177,37 @@ class MainActivity : AppCompatActivity() {
         (rv_menu_items_logged.adapter as NavMenuItemsAdapter).selectionTracker = selectNavMenuItemsLogged
     }
 
+    private fun initFragment(){
+        var fragment = supportFragmentManager.findFragmentByTag( FRAGMENT_TAG )
+
+        if( fragment == null ){
+            fragment = getFragment( R.id.item_about.toLong() )
+        }
+
+        replaceFragment( fragment )
+    }
+
+    private fun getFragment( fragmentId: Long) =
+        when( fragmentId ){
+            R.id.item_about.toLong() -> AboutFragment()
+            else -> AboutFragment()
+        }
+
+    private fun replaceFragment( fragment: Fragment ){
+        supportFragmentManager
+            .beginTransaction()
+            .replace(
+                R.id.fl_fragment_container,
+                fragment,
+                FRAGMENT_TAG
+            )
+            .commit()
+    }
+
+    fun updateToolbarTitleInFragment( titleId: Int ){
+        toolbar.title = getString( titleId )
+    }
+
     override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
         super.onSaveInstanceState(outState)
 
@@ -239,6 +285,9 @@ class MainActivity : AppCompatActivity() {
             /*
              * TODO: Mudança de Fragment
              * */
+
+            val fragment = getFragment( key )
+            replaceFragment( fragment )
 
             /*
              * Fechando o menu gaveta.
