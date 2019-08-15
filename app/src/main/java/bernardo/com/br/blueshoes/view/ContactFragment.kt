@@ -1,6 +1,9 @@
 package bernardo.com.br.blueshoes.view
 
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +11,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 import bernardo.com.br.blueshoes.R
+import kotlinx.android.synthetic.main.fragment_contact.*
 
 
-class ContactFragment : Fragment() {
+class ContactFragment : Fragment(), View.OnClickListener {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,5 +28,64 @@ class ContactFragment : Fragment() {
                 false)
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
+        iv_phone_cities.setOnClickListener(this)
+        tv_phone_cities.setOnClickListener(this)
+        iv_phone_other_regions.setOnClickListener(this)
+        tv_phone_other_regions.setOnClickListener(this)
+
+        iv_email_orders.setOnClickListener(this)
+        tv_email_orders.setOnClickListener(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        (activity as MainActivity)
+            .updateToolbarTitleInFragment( R.string.contact_frag_title )
+    }
+
+    override fun onClick(v: View?) {
+
+        if (v != null) {
+            when( v.id ){
+                iv_phone_cities.id,
+                tv_phone_cities.id ->
+                    phoneCallIntent( "0${tv_phone_cities.text}" )
+                iv_phone_other_regions.id,
+                tv_phone_other_regions.id ->
+                    phoneCallIntent( tv_phone_other_regions.text.toString() )
+            }
+        }
+    }
+
+    private fun phoneCallIntent( number: String ){
+        val phoneNumber = number.replace("(\\s|\\(|\\)|-)", "")
+        val intent = Intent( Intent.ACTION_DIAL )
+
+        intent.data = Uri.parse( "tel:$phoneNumber" )
+
+        activity!!.startActivity( intent )
+    }
+
+    private fun mailToIntent( emailAddress: String ){
+        val  intent = Intent( Intent.ACTION_SENDTO )
+
+        intent.data = Uri.parse( "mailto:" )
+
+        intent.putExtra(
+            Intent.EXTRA_EMAIL,
+            arrayOf( emailAddress )
+        )
+
+        try {
+            val intentChooser = Intent.createChooser( intent, "Enviar email com:" )
+            activity!!.startActivity( intentChooser )
+        }
+        catch ( e: ActivityNotFoundException ){
+
+        }
+    }
 }
