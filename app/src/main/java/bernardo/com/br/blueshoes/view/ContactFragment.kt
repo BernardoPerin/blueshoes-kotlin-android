@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 
 import bernardo.com.br.blueshoes.R
@@ -38,6 +39,11 @@ class ContactFragment : Fragment(), View.OnClickListener {
 
         iv_email_orders.setOnClickListener(this)
         tv_email_orders.setOnClickListener(this)
+        iv_email_attendance.setOnClickListener(this)
+        tv_email_attendance.setOnClickListener(this)
+
+        iv_address.setOnClickListener(this)
+        tv_address.setOnClickListener(this)
     }
 
     override fun onResume() {
@@ -57,6 +63,17 @@ class ContactFragment : Fragment(), View.OnClickListener {
                 iv_phone_other_regions.id,
                 tv_phone_other_regions.id ->
                     phoneCallIntent( tv_phone_other_regions.text.toString() )
+
+                iv_email_orders.id,
+                tv_email_orders.id ->
+                    mailToIntent( tv_email_orders.text.toString() )
+                iv_email_attendance.id,
+                tv_email_attendance.id ->
+                    mailToIntent( tv_email_attendance.text.toString() )
+
+                iv_address.id,
+                tv_address.id ->
+                    addressIntent( getString( R.string.contact_frag_address_formatted_to_google_maps ) )
             }
         }
     }
@@ -81,11 +98,44 @@ class ContactFragment : Fragment(), View.OnClickListener {
         )
 
         try {
-            val intentChooser = Intent.createChooser( intent, "Enviar email com:" )
+            val intentChooser = Intent
+                .createChooser(
+                    intent,
+                    getString( R.string.chooser_email_text )
+                )
             activity!!.startActivity( intentChooser )
         }
         catch ( e: ActivityNotFoundException ){
+            Toast
+                .makeText(
+                    activity,
+                    R.string.info_email_app_install,
+                    Toast.LENGTH_SHORT
+                )
+                .show()
+        }
+    }
 
+    private fun addressIntent( address: String){
+        val location = Uri.encode( address )
+        val navigation = "google.navigation:q=$location"
+
+        val navigationUri = Uri.parse( navigation )
+        val intent = Intent( Intent.ACTION_VIEW, navigationUri )
+
+        intent.setPackage( "com.google.android.apps.maps" )
+
+        try {
+            activity!!.startActivity( intent )
+        }
+        catch ( e: ActivityNotFoundException ){
+            Toast
+                .makeText(
+                    activity,
+                    R.string.info_google_maps_install,
+                    Toast.LENGTH_SHORT
+                )
+                .show()
         }
     }
 }
