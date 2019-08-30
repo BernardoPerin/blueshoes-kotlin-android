@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbars="vertical"
         tools:context=".view.PrivacyPolicyFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+            android:id="@+id/tv_privacy_policy_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+            android:padding="16dp"
+            android:bufferType="spannable"
+            android:textColor="@color/colorText"/>
+</androidx.core.widget.NestedScrollView>
