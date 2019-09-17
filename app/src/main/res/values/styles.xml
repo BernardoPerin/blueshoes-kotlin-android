@@ -30,25 +30,19 @@
     <!--
         Para o correto enquadramento do AppBarLayout.
     -->
-    <style
-            name="AppTheme.AppBarOverlay"
-            parent="ThemeOverlay.AppCompat.ActionBar"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar" />
 
     <!--
         Utilizado para a correta apresentação de menus de pop-up
         em barra de topo.
     -->
-    <style
-            name="AppTheme.PopupOverlay"
-            parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <!--
         Para colocarmos as cores, tamanho, negrito e família
         de fonte corretos no título da Toolbar.
     -->
-    <style
-            name="TitleAppearance"
-            parent="@android:style/TextAppearance">
+    <style name="TitleAppearance" parent="@android:style/TextAppearance">
 
         <item name="android:textSize">22sp</item>
         <item name="android:textStyle">bold</item>
@@ -61,9 +55,7 @@
         topo do aplicativo BlueShoes também seja aplicado às
         atividades desta API.
     -->
-    <style
-            name="imagepicker_ToolbarTitleText"
-            parent="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title">
+    <style name="imagepicker_ToolbarTitleText" parent="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title">
 
         <item name="android:textSize">22sp</item>
         <item name="android:textStyle">bold</item>
@@ -72,9 +64,7 @@
     <!--
         Para colocarmos a cor correta nos ícones da Toolbar.
     -->
-    <style
-            name="Toolbar"
-            parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    <style name="Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <item name="colorControlNormal">@color/colorText</item>
     </style>
