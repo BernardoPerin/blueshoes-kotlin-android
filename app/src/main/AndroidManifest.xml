@@ -9,15 +9,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity
-                android:name=".view.LoginActivity"
-                android:label="@string/title_activity_login"
-                android:parentActivityName=".view.MainActivity"
-                android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value="bernardo.com.br.blueshoes.view.MainActivity" />
-        </activity>
+
         <activity
                 android:name=".view.MainActivity"
                 android:label="@string/app_name"
@@ -28,6 +20,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+                android:name=".view.LoginActivity"
+                android:label="@string/title_activity_login"
+                android:parentActivityName=".view.MainActivity"
+                android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="bernardo.com.br.blueshoes.view.MainActivity" />
+        </activity>
+
     </application>
 
 </manifest>
