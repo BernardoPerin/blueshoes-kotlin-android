@@ -80,7 +80,8 @@
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
                     app:layout_constraintRight_toRightOf="@+id/ll_container_fields"
-                    app:layout_constraintTop_toBottomOf="@+id/ll_container_fields" />
+                    app:layout_constraintTop_toBottomOf="@+id/ll_container_fields"
+                    android:onClick="login"/>
 
             <TextView
                     android:id="@+id/tv_or"
@@ -101,14 +102,8 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_or" />
 
-            <TextView
-                    android:id="@+id/tv_privacy_policy"
-                    style="@style/TextViewLink"
-                    android:layout_marginTop="0dp"
-                    android:text="@string/privacy_policy"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent" />
+            <include layout="@layout/text_view_privacy_policy_login" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <FrameLayout
