@@ -35,6 +35,8 @@ dependencies {
     /* RoundedImageView API */
     implementation 'com.makeramen:roundedimageview:2.3.0'
 
+    /* AndroidUtilCode API */
+    implementation 'com.blankj:utilcode:1.23.7'
 }
 
 androidExtensions {

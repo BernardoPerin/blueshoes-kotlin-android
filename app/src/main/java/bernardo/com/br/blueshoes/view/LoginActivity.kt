@@ -17,17 +17,23 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import bernardo.com.br.blueshoes.R
+import com.blankj.utilcode.util.KeyboardUtils
+import com.blankj.utilcode.util.ScreenUtils
 import com.google.android.material.snackbar.Snackbar
 
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.content_login.*
+import kotlinx.android.synthetic.main.text_view_privacy_policy_login.*
 
 class LoginActivity :
     AppCompatActivity(),
-    TextView.OnEditorActionListener {
+    TextView.OnEditorActionListener,
+    KeyboardUtils.OnSoftInputChangedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +42,8 @@ class LoginActivity :
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         window.setBackgroundDrawableResource( R.drawable.bg_activity )
+
+        KeyboardUtils.registerSoftInputChangedListener(this,this)
 
         et_email.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(content: Editable?) {
@@ -73,6 +81,11 @@ class LoginActivity :
         })
 
         et_password.setOnEditorActionListener( this )
+    }
+
+    override fun onDestroy() {
+        KeyboardUtils.unregisterSoftInputChangedListener(this)
+        super.onDestroy()
     }
 
     private fun showProxy( status: Boolean ){
@@ -200,5 +213,56 @@ class LoginActivity :
         ) as InputMethodManager
 
         imm.hideSoftInputFromWindow( view.windowToken, 0 )
+    }
+
+    override fun onSoftInputChanged(height: Int) {
+        if( ScreenUtils.isPortrait() ){
+            changePrivacyPolicyConstraints(
+                KeyboardUtils.isSoftInputVisible( this )
+            )
+        }
+    }
+
+    private fun changePrivacyPolicyConstraints(
+            isKeyBoardOpened: Boolean
+        ){
+
+        val privacyId = tv_privacy_policy.id
+        val parent = tv_privacy_policy.parent as ConstraintLayout
+        val constraintSet = ConstraintSet()
+
+        constraintSet.constrainWidth(
+            privacyId,
+            ConstraintLayout.LayoutParams.WRAP_CONTENT
+        )
+        constraintSet.constrainHeight(
+            privacyId,
+            ConstraintLayout.LayoutParams.WRAP_CONTENT
+        )
+
+        constraintSet.centerHorizontally(
+            privacyId,
+            ConstraintLayout.LayoutParams.PARENT_ID
+        )
+
+        if( isKeyBoardOpened ){
+            constraintSet.connect(
+                privacyId,
+                ConstraintLayout.LayoutParams.TOP,
+                tv_sign_up.id,
+                ConstraintLayout.LayoutParams.BOTTOM,
+                (12 * ScreenUtils.getScreenDensity().toInt())
+            )
+        }
+        else{
+            constraintSet.connect(
+                privacyId,
+                ConstraintLayout.LayoutParams.BOTTOM,
+                ConstraintLayout.LayoutParams.PARENT_ID,
+                ConstraintLayout.LayoutParams.BOTTOM
+            )
+        }
+
+        constraintSet.applyTo( parent )
     }
 }
