@@ -1,5 +1,6 @@
 package bernardo.com.br.blueshoes.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.Menu
@@ -44,7 +45,7 @@ class MainActivity :
     val user = User(
         "Bernardo Perin",
         R.drawable.user,
-        true
+        false
     )
 
     lateinit var navMenuItems : List<NavMenuItem>
@@ -238,10 +239,15 @@ class MainActivity :
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            R.id.action_settings -> return true
+            else -> return super.onOptionsItemSelected(item)
         }
+    }
+
+    fun callLoginActivity( view: View ){
+        val intent = Intent( this, LoginActivity::class.java )
+        startActivity( intent )
     }
 
     inner class SelectObserverNavMenuItems(
