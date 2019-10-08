@@ -27,7 +27,9 @@ import com.blankj.utilcode.util.ScreenUtils
 import com.google.android.material.snackbar.Snackbar
 
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.content_login.*
+import kotlinx.android.synthetic.main.proxy_screen.*
 import kotlinx.android.synthetic.main.text_view_privacy_policy_login.*
 
 class LoginActivity :

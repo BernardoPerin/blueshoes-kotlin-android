@@ -32,32 +32,20 @@
 
                 <EditText
                         android:id="@+id/et_email"
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
+                        style="@style/EditTextFormField"
                         android:background="@drawable/bg_form_field_top"
                         android:hint="@string/hint_email"
                         android:imeOptions="actionNext"
-                        android:inputType="textEmailAddress"
-                        android:paddingLeft="17dp"
-                        android:paddingTop="13dp"
-                        android:paddingRight="17dp"
-                        android:paddingBottom="13dp"
-                        android:textSize="14sp" />
+                        android:inputType="textEmailAddress" />
 
                 <EditText
                         android:id="@+id/et_password"
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
+                        style="@style/EditTextFormField"
                         android:layout_marginTop="-1dp"
                         android:background="@drawable/bg_form_field_bottom"
                         android:hint="@string/hint_password"
                         android:imeOptions="actionDone"
-                        android:inputType="textPassword"
-                        android:paddingLeft="17dp"
-                        android:paddingTop="13dp"
-                        android:paddingRight="17dp"
-                        android:paddingBottom="13dp"
-                        android:textSize="14sp" />
+                        android:inputType="textPassword" />
             </LinearLayout>
 
             <TextView
@@ -70,15 +58,11 @@
 
             <Button
                     android:id="@+id/bt_login"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/ButtonForm"
                     android:layout_marginTop="12dp"
-                    android:background="@drawable/bt_nav_header_login_bg"
                     android:paddingLeft="38dp"
                     android:paddingRight="38dp"
                     android:text="@string/sign_in"
-                    android:textAllCaps="false"
-                    android:textColor="@android:color/white"
                     app:layout_constraintRight_toRightOf="@+id/ll_container_fields"
                     app:layout_constraintTop_toBottomOf="@+id/ll_container_fields"
                     android:onClick="login"/>
@@ -106,18 +90,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <FrameLayout
-                android:id="@+id/fl_proxy_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone"
-                android:background="@color/colorBackgroundProxy">
+        <include layout="@layout/proxy_screen" />
 
-            <ProgressBar
-                    android:layout_gravity="center"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:theme="@style/ProgressBarGreyProxy"/>
-        </FrameLayout>
     </FrameLayout>
 </androidx.core.widget.NestedScrollView>
