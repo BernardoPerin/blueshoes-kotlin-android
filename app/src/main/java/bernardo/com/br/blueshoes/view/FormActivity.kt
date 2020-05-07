@@ -36,28 +36,24 @@ abstract class FormActivity :
     AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        setSupportActionBar(toolbar)
+        super.onCreate( savedInstanceState )
+        setContentView( R.layout.activity_form )
+        setSupportActionBar( toolbar )
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         window.setBackgroundDrawableResource( R.drawable.bg_activity )
     }
 
-    override fun onDestroy() {
-        KeyboardUtils.unregisterSoftInputChangedListener(this)
-        super.onDestroy()
-    }
-
-    private fun showProxy( status: Boolean ){
-        fl_proxy_container.visibility = if( status )
+    protected fun showProxy( status: Boolean ){
+        fl_proxy_container.visibility =
+            if( status )
                 View.VISIBLE
             else
                 View.GONE
     }
 
-    private fun snackBarFeedback(
+    protected fun snackBarFeedback(
             viewContainer: View,
             status: Boolean,
             message: String
@@ -69,10 +65,11 @@ abstract class FormActivity :
                 message,
                 Snackbar.LENGTH_LONG)
 
-        val iconResource = if ( status )
-            R.drawable.ic_check_black_18dp
-        else
-            R.drawable.ic_close_black_18dp
+        val iconResource =
+            if ( status )
+                R.drawable.ic_check_black_18dp
+            else
+                R.drawable.ic_close_black_18dp
 
         val img = ResourcesCompat
             .getDrawable(
@@ -88,11 +85,12 @@ abstract class FormActivity :
             img.intrinsicHeight
         )
 
-        val iconColor = if ( status )
-            ContextCompat.getColor(
-                this,
-                R.color.colorNavButton
-                )
+        val iconColor =
+            if ( status )
+                ContextCompat.getColor(
+                    this,
+                    R.color.colorNavButton
+                    )
         else
             Color.RED
 
@@ -106,8 +104,9 @@ abstract class FormActivity :
             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
 
-        val snackbarView = snackbar.view
-        val textView = snackbarView.findViewById<TextView>( com.google.android.material.R.id.snackbar_text )
+        val textView = snackbar
+            .view
+            .findViewById<TextView>( com.google.android.material.R.id.snackbar_text )
 
         textView.setText( spannedTxt, TextView.BufferType.SPANNABLE)
 
@@ -116,16 +115,7 @@ abstract class FormActivity :
 
     abstract fun blockFields( status: Boolean )
 
-    private fun isSignInGoing( status: Boolean ){
-        bt_login.text = if( status )
-            getString(R.string.sign_in_going)
-        else
-            getString(R.string.sign_in)
-    }
+    abstract fun isMainButtonSending( status: Boolean )
 
-    fun login( view: View? = null ){
-        blockFields( true )
-        isSignInGoing( true )
-        showProxy( true )
-    }
+    abstract fun mainAction( view: View? = null )
 }

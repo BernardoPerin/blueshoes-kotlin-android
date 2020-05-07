@@ -33,17 +33,12 @@ import kotlinx.android.synthetic.main.proxy_screen.*
 import kotlinx.android.synthetic.main.text_view_privacy_policy_login.*
 
 class LoginActivity :
-    AppCompatActivity(),
+    FormActivity(),
     TextView.OnEditorActionListener,
     KeyboardUtils.OnSoftInputChangedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        window.setBackgroundDrawableResource( R.drawable.bg_activity )
 
         KeyboardUtils.registerSoftInputChangedListener(this,this)
 
@@ -90,86 +85,22 @@ class LoginActivity :
         super.onDestroy()
     }
 
-    private fun showProxy( status: Boolean ){
-        fl_proxy_container.visibility = if( status )
-                View.VISIBLE
-            else
-                View.GONE
-    }
-
-    private fun snackBarFeedback(
-            viewContainer: View,
-            status: Boolean,
-            message: String
-        ){
-
-        val snackbar = Snackbar
-            .make(
-                viewContainer,
-                message,
-                Snackbar.LENGTH_LONG)
-
-        val iconResource = if ( status )
-            R.drawable.ic_check_black_18dp
-        else
-            R.drawable.ic_close_black_18dp
-
-        val img = ResourcesCompat
-            .getDrawable(
-                resources,
-                iconResource,
-                null
-            )
-
-        img!!.setBounds(
-            0,
-            0,
-            img.intrinsicWidth,
-            img.intrinsicHeight
-        )
-
-        val iconColor = if ( status )
-            ContextCompat.getColor(
-                this,
-                R.color.colorNavButton
-                )
-        else
-            Color.RED
-
-        img.setColorFilter( iconColor, PorterDuff.Mode.SRC_ATOP )
-
-        val spannedTxt = SpannableString("     $message")
-        spannedTxt.setSpan(
-            ImageSpan( img, ImageSpan.ALIGN_BOTTOM),
-            0,
-            1,
-            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-
-        val snackbarView = snackbar.view
-        val textView = snackbarView.findViewById<TextView>( com.google.android.material.R.id.snackbar_text )
-
-        textView.setText( spannedTxt, TextView.BufferType.SPANNABLE)
-
-        snackbar.show()
-    }
-
-    private fun blockFields( status: Boolean ){
+    override fun blockFields( status: Boolean ){
         et_email.isEnabled = !status
         et_password.isEnabled = !status
         bt_login.isEnabled = !status
     }
 
-    private fun isSignInGoing( status: Boolean ){
+    override fun isMainButtonSending( status: Boolean ){
         bt_login.text = if( status )
             getString(R.string.sign_in_going)
         else
             getString(R.string.sign_in)
     }
 
-    fun login( view: View? = null ){
+    override fun mainAction( view: View? ){
         blockFields( true )
-        isSignInGoing( true )
+        isMainButtonSending( true )
         showProxy( true )
 
         backEndFakeDelay()
@@ -182,7 +113,7 @@ class LoginActivity :
 
                 runOnUiThread{
                     blockFields( false )
-                    isSignInGoing( false )
+                    isMainButtonSending( false )
                     showProxy( false )
 
                     snackBarFeedback(
@@ -202,7 +133,7 @@ class LoginActivity :
 
         if( actionId == EditorInfo.IME_ACTION_DONE ){
             closeVirtualKeyBoard( view )
-            login()
+            mainAction()
             return true
         }
 
