@@ -22,12 +22,16 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import bernardo.com.br.blueshoes.R
+import bernardo.com.br.blueshoes.util.isValidEmail
+import bernardo.com.br.blueshoes.util.isValidPassword
+import bernardo.com.br.blueshoes.util.validate
 import com.blankj.utilcode.util.KeyboardUtils
 import com.blankj.utilcode.util.ScreenUtils
 import com.google.android.material.snackbar.Snackbar
 
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.app_bar.*
+import kotlinx.android.synthetic.main.content_form.*
 import kotlinx.android.synthetic.main.content_login.*
 import kotlinx.android.synthetic.main.proxy_screen.*
 import kotlinx.android.synthetic.main.text_view_privacy_policy_login.*
@@ -40,42 +44,27 @@ class LoginActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        View.inflate(
+            this,
+            R.layout.content_login,
+            fl_form
+        )
+
         KeyboardUtils.registerSoftInputChangedListener(this,this)
 
-        et_email.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(content: Editable?) {
-                val message = getString(R.string.invalid_email)
+        et_email.validate(
+            {
+                it.isValidEmail()
+            },
+            getString(R.string.invalid_email)
+        )
 
-                if (content != null) {
-                    et_email.error = if( content.isNotEmpty()
-                        && Patterns.EMAIL_ADDRESS.matcher( content ).matches())
-                        null
-                    else
-                        message
-                }
-            }
-
-            override fun beforeTextChanged(content: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(content: CharSequence?, start: Int, before: Int, count: Int) {}
-
-        })
-
-        et_password.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(content: Editable?) {
-                val message = getString(R.string.invalid_password)
-
-                if (content != null) {
-                    et_password.error = if( content.length > 5)
-                        null
-                    else
-                        message
-                }
-            }
-
-            override fun beforeTextChanged(content: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(content: CharSequence?, start: Int, before: Int, count: Int) {}
-
-        })
+        et_password.validate(
+            {
+                it.isValidPassword()
+            },
+            getString(R.string.invalid_password)
+        )
 
         et_password.setOnEditorActionListener( this )
     }
@@ -131,21 +120,8 @@ class LoginActivity :
         actionId: Int,
         event: KeyEvent?): Boolean {
 
-        if( actionId == EditorInfo.IME_ACTION_DONE ){
-            closeVirtualKeyBoard( view )
-            mainAction()
-            return true
-        }
-
+        mainAction()
         return false
-    }
-
-    private fun closeVirtualKeyBoard( view: View ){
-        val imm = getSystemService(
-            Activity.INPUT_METHOD_SERVICE
-        ) as InputMethodManager
-
-        imm.hideSoftInputFromWindow( view.windowToken, 0 )
     }
 
     override fun onSoftInputChanged(height: Int) {
