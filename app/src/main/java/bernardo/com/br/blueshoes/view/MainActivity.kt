@@ -39,6 +39,7 @@ class MainActivity :
          **/
         const val LOG = "log-bs"
 
+        const val FRAGMENT_ID = "frag-id"
         const val FRAGMENT_TAG = "frag-tag"
     }
 
@@ -90,7 +91,12 @@ class MainActivity :
             selectNavMenuItemsLogged.onRestoreInstanceState( savedInstanceState )
         }
         else{
-            selectNavMenuItems.select( R.id.item_all_shoes.toLong() )
+            var fragId = intent.getIntExtra( FRAGMENT_ID, 0)
+            if( fragId == 0 ){
+                fragId =  R.id.item_all_shoes
+            }
+
+            selectNavMenuItems.select( fragId.toLong() )
         }
     }
 

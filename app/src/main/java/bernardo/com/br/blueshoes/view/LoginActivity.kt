@@ -16,6 +16,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
@@ -173,5 +174,21 @@ class LoginActivity :
         }
 
         constraintSet.applyTo( parent )
+    }
+
+    fun callForgotPasswordActivity( view: View){
+        Toast
+            .makeText( this, "TODO callForgotPasswordActivity()", Toast.LENGTH_SHORT)
+            .show()
+    }
+
+    fun callSignUpActivity( view: View){
+        Toast
+            .makeText( this, "TODO callSignUpActivity()", Toast.LENGTH_SHORT)
+            .show()
+    }
+
+    fun callPrivacyPolicyFragment( view: View){
+
     }
 }
