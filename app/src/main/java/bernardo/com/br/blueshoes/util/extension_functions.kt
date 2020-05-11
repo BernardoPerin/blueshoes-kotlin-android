@@ -4,8 +4,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
 import android.widget.EditText
-import bernardo.com.br.blueshoes.R
-import kotlinx.android.synthetic.main.content_login.*
 
 private fun EditText.afterTextChanged( invokeValidation : (String) -> Unit ) {
 

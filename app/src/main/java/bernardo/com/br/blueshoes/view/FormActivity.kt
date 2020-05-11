@@ -1,36 +1,21 @@
 package bernardo.com.br.blueshoes.view
 
-import android.app.Activity
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
-import android.os.SystemClock
-import android.text.Editable
 import android.text.SpannableString
 import android.text.Spanned
-import android.text.TextWatcher
 import android.text.style.ImageSpan
-import android.util.Patterns
-import android.view.KeyEvent
+import android.view.MenuItem
 import android.view.View
-import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import bernardo.com.br.blueshoes.R
-import com.blankj.utilcode.util.KeyboardUtils
-import com.blankj.utilcode.util.ScreenUtils
 import com.google.android.material.snackbar.Snackbar
-
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.app_bar.*
-import kotlinx.android.synthetic.main.content_login.*
 import kotlinx.android.synthetic.main.proxy_screen.*
-import kotlinx.android.synthetic.main.text_view_privacy_policy_login.*
 
 abstract class FormActivity :
     AppCompatActivity() {
@@ -40,9 +25,19 @@ abstract class FormActivity :
         setContentView( R.layout.activity_form )
         setSupportActionBar( toolbar )
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled( true )
+        supportActionBar?.setDisplayShowHomeEnabled( true )
 
         window.setBackgroundDrawableResource( R.drawable.bg_activity )
+    }
+
+    override fun onOptionsItemSelected( item: MenuItem ): Boolean {
+        if ( item.itemId == android.R.id.home ) {
+            finish()
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     protected fun showProxy( status: Boolean ){

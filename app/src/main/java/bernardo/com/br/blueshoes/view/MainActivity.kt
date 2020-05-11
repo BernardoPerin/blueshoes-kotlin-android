@@ -15,10 +15,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.selection.StorageStrategy
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.nav_header_user_logged.*
-import kotlinx.android.synthetic.main.nav_header_user_not_logged.*
-import kotlinx.android.synthetic.main.nav_menu.*
 import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.data.NavMenuItemsDataBase
 import bernardo.com.br.blueshoes.domain.NavMenuItem
@@ -26,7 +22,11 @@ import bernardo.com.br.blueshoes.domain.User
 import bernardo.com.br.blueshoes.util.NavMenuItemDetailsLookup
 import bernardo.com.br.blueshoes.util.NavMenuItemKeyProvider
 import bernardo.com.br.blueshoes.util.NavMenuItemPredicate
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar.*
+import kotlinx.android.synthetic.main.nav_header_user_logged.*
+import kotlinx.android.synthetic.main.nav_header_user_not_logged.*
+import kotlinx.android.synthetic.main.nav_menu.*
 
 
 class MainActivity :
@@ -188,7 +188,12 @@ class MainActivity :
         var fragment = supportFragmentManager.findFragmentByTag( FRAGMENT_TAG )
 
         if( fragment == null ){
-            fragment = getFragment( R.id.item_about.toLong() )
+            var fragId = intent.getIntExtra( FRAGMENT_ID, 0)
+            if( fragId == 0 ){
+                fragId =  R.id.item_about
+            }
+
+            fragment = getFragment( fragId.toLong() )
         }
 
         replaceFragment( fragment )

@@ -55,26 +55,24 @@ class ContactFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
 
-        if (v != null) {
-            when( v.id ){
-                iv_phone_cities.id,
-                tv_phone_cities.id ->
-                    phoneCallIntent( "0${tv_phone_cities.text}" )
-                iv_phone_other_regions.id,
-                tv_phone_other_regions.id ->
-                    phoneCallIntent( tv_phone_other_regions.text.toString() )
+        when( v?.id ){
+            iv_phone_cities.id,
+            tv_phone_cities.id ->
+                phoneCallIntent( "0${tv_phone_cities.text}" )
+            iv_phone_other_regions.id,
+            tv_phone_other_regions.id ->
+                phoneCallIntent( tv_phone_other_regions.text.toString() )
 
-                iv_email_orders.id,
-                tv_email_orders.id ->
-                    mailToIntent( tv_email_orders.text.toString() )
-                iv_email_attendance.id,
-                tv_email_attendance.id ->
-                    mailToIntent( tv_email_attendance.text.toString() )
+            iv_email_orders.id,
+            tv_email_orders.id ->
+                mailToIntent( tv_email_orders.text.toString() )
+            iv_email_attendance.id,
+            tv_email_attendance.id ->
+                mailToIntent( tv_email_attendance.text.toString() )
 
-                iv_address.id,
-                tv_address.id ->
-                    addressIntent( getString( R.string.contact_frag_address_formatted_to_google_maps ) )
-            }
+            iv_address.id,
+            tv_address.id ->
+                addressIntent( getString( R.string.contact_frag_address_formatted_to_google_maps ) )
         }
     }
 

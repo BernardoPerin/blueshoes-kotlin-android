@@ -1,40 +1,22 @@
 package bernardo.com.br.blueshoes.view
 
-import android.app.Activity
-import android.graphics.Color
-import android.graphics.PorterDuff
+import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
-import android.text.Editable
-import android.text.SpannableString
-import android.text.Spanned
-import android.text.TextWatcher
-import android.text.style.ImageSpan
-import android.util.Patterns
 import android.view.KeyEvent
 import android.view.View
-import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.util.isValidEmail
 import bernardo.com.br.blueshoes.util.isValidPassword
 import bernardo.com.br.blueshoes.util.validate
 import com.blankj.utilcode.util.KeyboardUtils
 import com.blankj.utilcode.util.ScreenUtils
-import com.google.android.material.snackbar.Snackbar
-
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.content_form.*
 import kotlinx.android.synthetic.main.content_login.*
-import kotlinx.android.synthetic.main.proxy_screen.*
 import kotlinx.android.synthetic.main.text_view_privacy_policy_login.*
 
 class LoginActivity :
@@ -189,6 +171,11 @@ class LoginActivity :
     }
 
     fun callPrivacyPolicyFragment( view: View){
+        val intent = Intent( this, MainActivity::class.java )
 
+        intent.putExtra( MainActivity.FRAGMENT_ID, R.id.item_privacy_policy )
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+
+        startActivity( intent )
     }
 }
