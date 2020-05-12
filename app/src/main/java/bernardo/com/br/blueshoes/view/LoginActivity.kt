@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.text_view_privacy_policy_login.*
 
 class LoginActivity :
     FormActivity(),
-    TextView.OnEditorActionListener,
     KeyboardUtils.OnSoftInputChangedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,36 +74,10 @@ class LoginActivity :
         isMainButtonSending( true )
         showProxy( true )
 
-        backEndFakeDelay()
-    }
-
-    private fun backEndFakeDelay(){
-        Thread{
-            kotlin.run {
-                SystemClock.sleep(1000)
-
-                runOnUiThread{
-                    blockFields( false )
-                    isMainButtonSending( false )
-                    showProxy( false )
-
-                    snackBarFeedback(
-                        fl_form_container,
-                        false,
-                        getString(R.string.invalid_login)
-                    )
-                }
-            }
-        }.start()
-    }
-
-    override fun onEditorAction(
-        view: TextView,
-        actionId: Int,
-        event: KeyEvent?): Boolean {
-
-        mainAction()
-        return false
+        backEndFakeDelay(
+            false,
+            getString(R.string.invalid_login)
+        )
     }
 
     override fun onSoftInputChanged(height: Int) {

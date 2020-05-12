@@ -3,9 +3,11 @@ package bernardo.com.br.blueshoes.view
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.os.SystemClock
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.ImageSpan
+import android.view.KeyEvent
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
@@ -15,10 +17,12 @@ import androidx.core.content.res.ResourcesCompat
 import bernardo.com.br.blueshoes.R
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.app_bar.*
+import kotlinx.android.synthetic.main.content_form.*
 import kotlinx.android.synthetic.main.proxy_screen.*
 
 abstract class FormActivity :
-    AppCompatActivity() {
+    AppCompatActivity(),
+    TextView.OnEditorActionListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate( savedInstanceState )
@@ -38,6 +42,15 @@ abstract class FormActivity :
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onEditorAction(
+        view: TextView,
+        actionId: Int,
+        event: KeyEvent?): Boolean {
+
+        mainAction()
+        return false
     }
 
     protected fun showProxy( status: Boolean ){
@@ -113,4 +126,28 @@ abstract class FormActivity :
     abstract fun isMainButtonSending( status: Boolean )
 
     abstract fun mainAction( view: View? = null )
+
+
+    protected fun backEndFakeDelay(
+        statusAction: Boolean,
+        feesbackMessage: String
+    ){
+        Thread{
+            kotlin.run {
+                SystemClock.sleep(1000)
+
+                runOnUiThread{
+                    blockFields( false )
+                    isMainButtonSending( false )
+                    showProxy( false )
+
+                    snackBarFeedback(
+                        fl_form_container,
+                        statusAction,
+                        feesbackMessage
+                    )
+                }
+            }
+        }.start()
+    }
 }

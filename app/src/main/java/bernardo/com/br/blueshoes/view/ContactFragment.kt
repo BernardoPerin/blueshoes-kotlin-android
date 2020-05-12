@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 
 import bernardo.com.br.blueshoes.R
 import kotlinx.android.synthetic.main.fragment_contact.*
+import kotlinx.android.synthetic.main.info_block.*
 
 
 class ContactFragment : Fragment(), View.OnClickListener {
@@ -44,6 +45,8 @@ class ContactFragment : Fragment(), View.OnClickListener {
 
         iv_address.setOnClickListener(this)
         tv_address.setOnClickListener(this)
+
+        tv_info_block.text = getString( R.string.contact_frag_info )
     }
 
     override fun onResume() {
