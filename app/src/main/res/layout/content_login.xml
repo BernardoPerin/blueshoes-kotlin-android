@@ -48,8 +48,6 @@
             style="@style/ButtonForm"
             android:layout_marginTop="12dp"
             android:onClick="mainAction"
-            android:paddingLeft="38dp"
-            android:paddingRight="38dp"
             android:text="@string/sign_in"
             app:layout_constraintRight_toRightOf="@+id/ll_container_fields"
             app:layout_constraintTop_toBottomOf="@+id/ll_container_fields" />

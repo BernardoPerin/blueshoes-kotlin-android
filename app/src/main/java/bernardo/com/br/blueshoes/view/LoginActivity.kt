@@ -2,10 +2,7 @@ package bernardo.com.br.blueshoes.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.SystemClock
-import android.view.KeyEvent
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
@@ -132,9 +129,12 @@ class LoginActivity :
     }
 
     fun callForgotPasswordActivity( view: View){
-        Toast
-            .makeText( this, "TODO callForgotPasswordActivity()", Toast.LENGTH_SHORT)
-            .show()
+        val intent = Intent(
+            this,
+            ForgotPasswordActivity::class.java
+        )
+
+        startActivity( intent )
     }
 
     fun callSignUpActivity( view: View){
@@ -144,7 +144,10 @@ class LoginActivity :
     }
 
     fun callPrivacyPolicyFragment( view: View){
-        val intent = Intent( this, MainActivity::class.java )
+        val intent = Intent(
+            this,
+            MainActivity::class.java
+        )
 
         intent.putExtra( MainActivity.FRAGMENT_ID, R.id.item_privacy_policy )
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
