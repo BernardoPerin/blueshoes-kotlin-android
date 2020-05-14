@@ -20,7 +20,7 @@
                 android:id="@+id/et_email"
                 style="@style/EditTextFormField"
                 android:background="@drawable/bg_form_field_top"
-                android:hint="@string/hint_email"
+                android:hint="@string/hint_email_to_login"
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress" />
 
@@ -28,48 +28,36 @@
                 android:id="@+id/et_password"
                 style="@style/EditTextFormField"
                 android:layout_marginTop="-1dp"
-                android:background="@drawable/bg_form_field_bottom"
+                android:background="@drawable/bg_form_field_sqr"
                 android:hint="@string/hint_password"
+                android:imeOptions="actionNext"
+                android:inputType="textPassword" />
+
+        <EditText
+                android:id="@+id/et_confirm_password"
+                style="@style/EditTextFormField"
+                android:layout_marginTop="-1dp"
+                android:background="@drawable/bg_form_field_bottom"
+                android:hint="@string/hint_confirm_password"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword" />
     </LinearLayout>
 
     <TextView
-            android:id="@+id/tv_forgot_password"
+            android:id="@+id/tv_login"
             style="@style/TextViewLink"
             android:layout_marginTop="12dp"
-            android:text="@string/forgot_my_password"
+            android:text="@string/do_login"
             app:layout_constraintLeft_toLeftOf="@+id/ll_container_fields"
-            app:layout_constraintTop_toBottomOf="@+id/ll_container_fields"
-            android:onClick="callForgotPasswordActivity"/>
-
-    <Button
-            android:id="@+id/bt_login"
-            style="@style/ButtonForm"
-            android:onClick="mainAction"
-            android:text="@string/sign_in"
-            app:layout_constraintRight_toRightOf="@+id/ll_container_fields"
             app:layout_constraintTop_toBottomOf="@+id/ll_container_fields" />
 
-    <TextView
-            android:id="@+id/tv_or"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
-            android:text="@string/or"
-            android:textColor="@color/colorText"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bt_login" />
-
-    <TextView
-            android:id="@+id/tv_sign_up"
-            style="@style/TextViewLink"
-            android:text="@string/create_my_account"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_or"
-            android:onClick="callSignUpActivity"/>
+    <Button
+            android:id="@+id/bt_sign_up"
+            style="@style/ButtonForm"
+            android:onClick="mainAction"
+            android:text="@string/sign_up"
+            app:layout_constraintRight_toRightOf="@+id/ll_container_fields"
+            app:layout_constraintTop_toBottomOf="@+id/ll_container_fields" />
 
     <include layout="@layout/text_view_privacy_policy_login" />
 
