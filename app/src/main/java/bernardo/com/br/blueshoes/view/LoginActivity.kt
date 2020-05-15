@@ -3,7 +3,6 @@ package bernardo.com.br.blueshoes.view
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import bernardo.com.br.blueshoes.R
@@ -138,9 +137,12 @@ class LoginActivity :
     }
 
     fun callSignUpActivity( view: View){
-        Toast
-            .makeText( this, "TODO callSignUpActivity()", Toast.LENGTH_SHORT)
-            .show()
+        val intent = Intent(
+            this,
+            SignUpActivity::class.java
+        )
+
+        startActivity( intent )
     }
 
     fun callPrivacyPolicyFragment( view: View){

@@ -3,7 +3,6 @@ package bernardo.com.br.blueshoes.view
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import bernardo.com.br.blueshoes.R
@@ -65,6 +64,7 @@ class SignUpActivity :
     override fun blockFields( status: Boolean ){
         et_email.isEnabled = !status
         et_password.isEnabled = !status
+        et_confirm_password.isEnabled = !status
         bt_sign_up.isEnabled = !status
     }
 
@@ -82,16 +82,14 @@ class SignUpActivity :
 
         backEndFakeDelay(
             false,
-            getString(R.string.invalid_login)
+            getString(R.string.invalid_sign_up_email)
         )
     }
 
     override fun onSoftInputChanged(height: Int) {
-        if( ScreenUtils.isPortrait() ){
-            changePrivacyPolicyConstraints(
-                KeyboardUtils.isSoftInputVisible( this )
-            )
-        }
+        changePrivacyPolicyConstraints(
+            KeyboardUtils.isSoftInputVisible( this )
+        )
     }
 
     private fun changePrivacyPolicyConstraints(
@@ -116,11 +114,11 @@ class SignUpActivity :
             ConstraintLayout.LayoutParams.PARENT_ID
         )
 
-        if( isKeyBoardOpened ){
+        if( isKeyBoardOpened || ScreenUtils.isLandscape() ){
             constraintSet.connect(
                 privacyId,
                 ConstraintLayout.LayoutParams.TOP,
-                tv_sign_up.id,
+                bt_sign_up.id,
                 ConstraintLayout.LayoutParams.BOTTOM,
                 (12 * ScreenUtils.getScreenDensity().toInt())
             )
@@ -137,19 +135,8 @@ class SignUpActivity :
         constraintSet.applyTo( parent )
     }
 
-    fun callForgotPasswordActivity( view: View){
-        val intent = Intent(
-            this,
-            ForgotPasswordActivity::class.java
-        )
-
-        startActivity( intent )
-    }
-
-    fun callSignUpActivity( view: View){
-        Toast
-            .makeText( this, "TODO callSignUpActivity()", Toast.LENGTH_SHORT)
-            .show()
+    fun callLoginActivity( view: View){
+        finish()
     }
 
     fun callPrivacyPolicyFragment( view: View){
