@@ -16,8 +16,7 @@ import kotlinx.android.synthetic.main.content_login.*
 import kotlinx.android.synthetic.main.text_view_privacy_policy_login.*
 
 class LoginActivity :
-    FormActivity(),
-    KeyboardUtils.OnSoftInputChangedListener {
+    FormEmailAndPasswordActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +26,6 @@ class LoginActivity :
             R.layout.content_login,
             fl_form
         )
-
-        KeyboardUtils.registerSoftInputChangedListener(this,this)
 
         et_email.validate(
             {
@@ -45,11 +42,6 @@ class LoginActivity :
         )
 
         et_password.setOnEditorActionListener( this )
-    }
-
-    override fun onDestroy() {
-        KeyboardUtils.unregisterSoftInputChangedListener(this)
-        super.onDestroy()
     }
 
     override fun blockFields( status: Boolean ){
@@ -76,13 +68,8 @@ class LoginActivity :
         )
     }
 
-    override fun onSoftInputChanged(height: Int) {
-        if( ScreenUtils.isPortrait() ){
-            changePrivacyPolicyConstraints(
-                KeyboardUtils.isSoftInputVisible( this )
-            )
-        }
-    }
+    override fun isAbleToCallChangePrivacyPolicyConstraints()
+        = ScreenUtils.isPortrait()
 
     private fun changePrivacyPolicyConstraints(
             isKeyBoardOpened: Boolean
@@ -141,18 +128,6 @@ class LoginActivity :
             this,
             SignUpActivity::class.java
         )
-
-        startActivity( intent )
-    }
-
-    fun callPrivacyPolicyFragment( view: View){
-        val intent = Intent(
-            this,
-            MainActivity::class.java
-        )
-
-        intent.putExtra( MainActivity.FRAGMENT_ID, R.id.item_privacy_policy )
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
 
         startActivity( intent )
     }

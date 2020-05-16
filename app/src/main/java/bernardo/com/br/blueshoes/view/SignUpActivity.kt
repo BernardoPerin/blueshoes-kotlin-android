@@ -16,8 +16,7 @@ import kotlinx.android.synthetic.main.content_sign_up.*
 import kotlinx.android.synthetic.main.text_view_privacy_policy_login.*
 
 class SignUpActivity :
-    FormActivity(),
-    KeyboardUtils.OnSoftInputChangedListener {
+    FormEmailAndPasswordActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +26,6 @@ class SignUpActivity :
             R.layout.content_sign_up,
             fl_form
         )
-
-        KeyboardUtils.registerSoftInputChangedListener(this,this)
 
         et_email.validate(
             {
@@ -56,11 +53,6 @@ class SignUpActivity :
         et_confirm_password.setOnEditorActionListener( this )
     }
 
-    override fun onDestroy() {
-        KeyboardUtils.unregisterSoftInputChangedListener(this)
-        super.onDestroy()
-    }
-
     override fun blockFields( status: Boolean ){
         et_email.isEnabled = !status
         et_password.isEnabled = !status
@@ -83,12 +75,6 @@ class SignUpActivity :
         backEndFakeDelay(
             false,
             getString(R.string.invalid_sign_up_email)
-        )
-    }
-
-    override fun onSoftInputChanged(height: Int) {
-        changePrivacyPolicyConstraints(
-            KeyboardUtils.isSoftInputVisible( this )
         )
     }
 
@@ -137,17 +123,5 @@ class SignUpActivity :
 
     fun callLoginActivity( view: View){
         finish()
-    }
-
-    fun callPrivacyPolicyFragment( view: View){
-        val intent = Intent(
-            this,
-            MainActivity::class.java
-        )
-
-        intent.putExtra( MainActivity.FRAGMENT_ID, R.id.item_privacy_policy )
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-
-        startActivity( intent )
     }
 }
