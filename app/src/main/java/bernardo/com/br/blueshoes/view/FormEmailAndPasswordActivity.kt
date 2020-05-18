@@ -52,4 +52,48 @@ abstract class FormEmailAndPasswordActivity :
 
     open fun isAbleToCallChangePrivacyPolicyConstraints()
         = true
+
+    private fun changePrivacyPolicyConstraints(
+        isKeyBoardOpened: Boolean
+    ){
+
+        val privacyId = tv_privacy_policy.id
+        val parent = tv_privacy_policy.parent as ConstraintLayout
+        val constraintSet = ConstraintSet()
+
+        constraintSet.constrainWidth(
+            privacyId,
+            ConstraintLayout.LayoutParams.WRAP_CONTENT
+        )
+        constraintSet.constrainHeight(
+            privacyId,
+            ConstraintLayout.LayoutParams.WRAP_CONTENT
+        )
+
+        constraintSet.centerHorizontally(
+            privacyId,
+            ConstraintLayout.LayoutParams.PARENT_ID
+        )
+
+        if( isConstraintToSiblingView( isKeyBoardOpened ) ){
+            setConstraintsRelativeToSiblingView( constraintSet, privacyId)
+        }
+        else{
+            constraintSet.connect(
+                privacyId,
+                ConstraintLayout.LayoutParams.BOTTOM,
+                ConstraintLayout.LayoutParams.PARENT_ID,
+                ConstraintLayout.LayoutParams.BOTTOM
+            )
+        }
+
+        constraintSet.applyTo( parent )
+    }
+
+    abstract fun isConstraintToSiblingView( isKeyBoardOpened: Boolean ) : Boolean
+
+    abstract fun setConstraintsRelativeToSiblingView(
+            constraintSet: ConstraintSet,
+            privacyId: Int
+        ) : Unit
 }

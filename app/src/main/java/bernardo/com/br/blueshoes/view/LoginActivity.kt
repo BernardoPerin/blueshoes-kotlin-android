@@ -71,47 +71,20 @@ class LoginActivity :
     override fun isAbleToCallChangePrivacyPolicyConstraints()
         = ScreenUtils.isPortrait()
 
-    private fun changePrivacyPolicyConstraints(
-            isKeyBoardOpened: Boolean
-        ){
+    override fun isConstraintToSiblingView( isKeyBoardOpened: Boolean )
+        = isKeyBoardOpened
 
-        val privacyId = tv_privacy_policy.id
-        val parent = tv_privacy_policy.parent as ConstraintLayout
-        val constraintSet = ConstraintSet()
+    override fun setConstraintsRelativeToSiblingView(
+        constraintSet: ConstraintSet,
+        privacyId: Int ){
 
-        constraintSet.constrainWidth(
+        constraintSet.connect(
             privacyId,
-            ConstraintLayout.LayoutParams.WRAP_CONTENT
+            ConstraintLayout.LayoutParams.TOP,
+            tv_sign_up.id,
+            ConstraintLayout.LayoutParams.BOTTOM,
+            (12 * ScreenUtils.getScreenDensity().toInt())
         )
-        constraintSet.constrainHeight(
-            privacyId,
-            ConstraintLayout.LayoutParams.WRAP_CONTENT
-        )
-
-        constraintSet.centerHorizontally(
-            privacyId,
-            ConstraintLayout.LayoutParams.PARENT_ID
-        )
-
-        if( isKeyBoardOpened ){
-            constraintSet.connect(
-                privacyId,
-                ConstraintLayout.LayoutParams.TOP,
-                tv_sign_up.id,
-                ConstraintLayout.LayoutParams.BOTTOM,
-                (12 * ScreenUtils.getScreenDensity().toInt())
-            )
-        }
-        else{
-            constraintSet.connect(
-                privacyId,
-                ConstraintLayout.LayoutParams.BOTTOM,
-                ConstraintLayout.LayoutParams.PARENT_ID,
-                ConstraintLayout.LayoutParams.BOTTOM
-            )
-        }
-
-        constraintSet.applyTo( parent )
     }
 
     fun callForgotPasswordActivity( view: View){

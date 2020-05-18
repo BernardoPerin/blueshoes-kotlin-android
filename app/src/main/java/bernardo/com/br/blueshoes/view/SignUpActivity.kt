@@ -13,6 +13,8 @@ import com.blankj.utilcode.util.KeyboardUtils
 import com.blankj.utilcode.util.ScreenUtils
 import kotlinx.android.synthetic.main.content_form.*
 import kotlinx.android.synthetic.main.content_sign_up.*
+import kotlinx.android.synthetic.main.content_sign_up.et_email
+import kotlinx.android.synthetic.main.content_sign_up.et_password
 import kotlinx.android.synthetic.main.text_view_privacy_policy_login.*
 
 class SignUpActivity :
@@ -78,47 +80,20 @@ class SignUpActivity :
         )
     }
 
-    private fun changePrivacyPolicyConstraints(
-            isKeyBoardOpened: Boolean
-        ){
+    override fun isConstraintToSiblingView( isKeyBoardOpened : Boolean )
+        = isKeyBoardOpened || ScreenUtils.isLandscape()
 
-        val privacyId = tv_privacy_policy.id
-        val parent = tv_privacy_policy.parent as ConstraintLayout
-        val constraintSet = ConstraintSet()
+    override fun setConstraintsRelativeToSiblingView(
+        constraintSet: ConstraintSet,
+        privacyId: Int ){
 
-        constraintSet.constrainWidth(
+        constraintSet.connect(
             privacyId,
-            ConstraintLayout.LayoutParams.WRAP_CONTENT
+            ConstraintLayout.LayoutParams.TOP,
+            bt_sign_up.id,
+            ConstraintLayout.LayoutParams.BOTTOM,
+            (12 * ScreenUtils.getScreenDensity().toInt())
         )
-        constraintSet.constrainHeight(
-            privacyId,
-            ConstraintLayout.LayoutParams.WRAP_CONTENT
-        )
-
-        constraintSet.centerHorizontally(
-            privacyId,
-            ConstraintLayout.LayoutParams.PARENT_ID
-        )
-
-        if( isKeyBoardOpened || ScreenUtils.isLandscape() ){
-            constraintSet.connect(
-                privacyId,
-                ConstraintLayout.LayoutParams.TOP,
-                bt_sign_up.id,
-                ConstraintLayout.LayoutParams.BOTTOM,
-                (12 * ScreenUtils.getScreenDensity().toInt())
-            )
-        }
-        else{
-            constraintSet.connect(
-                privacyId,
-                ConstraintLayout.LayoutParams.BOTTOM,
-                ConstraintLayout.LayoutParams.PARENT_ID,
-                ConstraintLayout.LayoutParams.BOTTOM
-            )
-        }
-
-        constraintSet.applyTo( parent )
     }
 
     fun callLoginActivity( view: View){
