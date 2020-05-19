@@ -9,23 +9,14 @@ import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.util.isValidEmail
 import bernardo.com.br.blueshoes.util.isValidPassword
 import bernardo.com.br.blueshoes.util.validate
-import com.blankj.utilcode.util.KeyboardUtils
 import com.blankj.utilcode.util.ScreenUtils
-import kotlinx.android.synthetic.main.content_form.*
 import kotlinx.android.synthetic.main.content_login.*
-import kotlinx.android.synthetic.main.text_view_privacy_policy_login.*
 
 class LoginActivity :
     FormEmailAndPasswordActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        View.inflate(
-            this,
-            R.layout.content_login,
-            fl_form
-        )
 
         et_email.validate(
             {
@@ -44,6 +35,9 @@ class LoginActivity :
         et_password.setOnEditorActionListener( this )
     }
 
+    override fun getLayoutResourceID()
+        = R.layout.content_login
+
     override fun blockFields( status: Boolean ){
         et_email.isEnabled = !status
         et_password.isEnabled = !status
@@ -57,11 +51,7 @@ class LoginActivity :
             getString(R.string.sign_in)
     }
 
-    override fun mainAction( view: View? ){
-        blockFields( true )
-        isMainButtonSending( true )
-        showProxy( true )
-
+    override fun backEndFakeDelay(){
         backEndFakeDelay(
             false,
             getString(R.string.invalid_login)

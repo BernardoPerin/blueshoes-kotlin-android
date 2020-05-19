@@ -6,13 +6,7 @@ import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import bernardo.com.br.blueshoes.R
-import bernardo.com.br.blueshoes.util.isValidEmail
-import bernardo.com.br.blueshoes.util.isValidPassword
-import bernardo.com.br.blueshoes.util.validate
 import com.blankj.utilcode.util.KeyboardUtils
-import com.blankj.utilcode.util.ScreenUtils
-import kotlinx.android.synthetic.main.content_form.*
-import kotlinx.android.synthetic.main.content_login.*
 import kotlinx.android.synthetic.main.text_view_privacy_policy_login.*
 
 abstract class FormEmailAndPasswordActivity :

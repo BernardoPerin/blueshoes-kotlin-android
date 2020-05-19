@@ -1,6 +1,5 @@
 package bernardo.com.br.blueshoes.view
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -9,25 +8,14 @@ import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.util.isValidEmail
 import bernardo.com.br.blueshoes.util.isValidPassword
 import bernardo.com.br.blueshoes.util.validate
-import com.blankj.utilcode.util.KeyboardUtils
 import com.blankj.utilcode.util.ScreenUtils
-import kotlinx.android.synthetic.main.content_form.*
 import kotlinx.android.synthetic.main.content_sign_up.*
-import kotlinx.android.synthetic.main.content_sign_up.et_email
-import kotlinx.android.synthetic.main.content_sign_up.et_password
-import kotlinx.android.synthetic.main.text_view_privacy_policy_login.*
 
 class SignUpActivity :
     FormEmailAndPasswordActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        View.inflate(
-            this,
-            R.layout.content_sign_up,
-            fl_form
-        )
 
         et_email.validate(
             {
@@ -55,6 +43,9 @@ class SignUpActivity :
         et_confirm_password.setOnEditorActionListener( this )
     }
 
+    override fun getLayoutResourceID()
+            = R.layout.content_sign_up
+
     override fun blockFields( status: Boolean ){
         et_email.isEnabled = !status
         et_password.isEnabled = !status
@@ -69,11 +60,7 @@ class SignUpActivity :
             getString(R.string.sign_up)
     }
 
-    override fun mainAction( view: View? ){
-        blockFields( true )
-        isMainButtonSending( true )
-        showProxy( true )
-
+    override fun backEndFakeDelay(){
         backEndFakeDelay(
             false,
             getString(R.string.invalid_sign_up_email)

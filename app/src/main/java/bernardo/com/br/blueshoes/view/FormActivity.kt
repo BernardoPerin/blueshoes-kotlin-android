@@ -33,7 +33,15 @@ abstract class FormActivity :
         supportActionBar?.setDisplayShowHomeEnabled( true )
 
         window.setBackgroundDrawableResource( R.drawable.bg_activity )
+
+        View.inflate(
+            this,
+            getLayoutResourceID(),
+            fl_form
+        )
     }
+
+    abstract fun getLayoutResourceID() : Int
 
     override fun onOptionsItemSelected( item: MenuItem ): Boolean {
         if ( item.itemId == android.R.id.home ) {
@@ -125,8 +133,14 @@ abstract class FormActivity :
 
     abstract fun isMainButtonSending( status: Boolean )
 
-    abstract fun mainAction( view: View? = null )
+    fun mainAction( view: View? = null ){
+        blockFields( true )
+        isMainButtonSending( true )
+        showProxy( true )
+        backEndFakeDelay()
+    }
 
+    abstract fun backEndFakeDelay() : Unit
 
     protected fun backEndFakeDelay(
         statusAction: Boolean,
