@@ -1,5 +1,6 @@
 package bernardo.com.br.blueshoes.data
 
+import android.content.Context
 import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.domain.NavMenuItem
 import bernardo.com.br.blueshoes.view.MainActivity
@@ -77,4 +78,49 @@ class NavMenuItemsDataBase(context: MainActivity) {
     fun getLastItemId() = items.last().id
 
     fun getFirstItemLoggedId() = itemsLogged.first().id
+
+    companion object{
+        const val SP_NAME = "SP_NAV_MENU"
+        const val SP_ITEM_ID_KEY = "item_id"
+        const val SP_IS_ACTIVITY_KEY = "is-activity"
+    }
+
+    private fun getSP( context: Context )
+        = context.getSharedPreferences(
+            SP_NAME,
+            Context.MODE_PRIVATE
+    )
+
+    fun saveLastSelectedItemFragmentID(
+        context: Context,
+        itemID: Long
+    ){
+        val sp = getSP(context)
+        sp
+            .edit()
+            .putLong( SP_ITEM_ID_KEY, itemID )
+            .apply()
+    }
+
+    fun getLastSelectedItemFragmentID(context: Context) : Long{
+        val sp = getSP(context)
+        return sp.getLong( SP_ITEM_ID_KEY, 0 )
+    }
+
+    fun saveIsActivityItemFired(
+        context: Context,
+        isActivity: Boolean
+    ){
+        val sp = getSP(context)
+        sp
+            .edit()
+            .putBoolean( SP_IS_ACTIVITY_KEY, isActivity )
+            .apply()
+    }
+
+    fun wasIsActivityItemFired( context: Context) : Boolean {
+        val sp = getSP(context)
+        return sp.getBoolean(SP_IS_ACTIVITY_KEY, false)
+    }
+
 }

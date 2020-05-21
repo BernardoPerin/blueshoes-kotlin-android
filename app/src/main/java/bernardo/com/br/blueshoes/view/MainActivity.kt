@@ -54,6 +54,7 @@ class MainActivity :
 
     lateinit var navMenuItemsLogged : List<NavMenuItem>
     lateinit var selectNavMenuItemsLogged : SelectionTracker<Long>
+    lateinit var navMenu : NavMenuItemsDataBase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,7 +78,7 @@ class MainActivity :
 
     private fun initNavMenu( savedInstanceState: Bundle? ){
 
-        val navMenu = NavMenuItemsDataBase(this)
+        navMenu = NavMenuItemsDataBase(this)
         navMenuItems = navMenu.items
         navMenuItemsLogged = navMenu.itemsLogged
 
@@ -291,27 +292,44 @@ class MainActivity :
                 return
             }
 
-            /*
-             * Para garantir que somente um item de lista se
-             * manterá selecionado, é preciso acessar o objeto
-             * de seleção da lista de itens de usuário conectado
-             * para então remover qualquer possível seleção
-             * ainda presente nela. Sempre haverá somente um
-             * item selecionado, mas infelizmente o método
-             * clearSelection() não estava respondendo como
-             * esperado, por isso a estratégia a seguir.
-             * */
-            callbackRemoveSelection()
+            if( isActivityItemCalledInMenu( key ) ){
 
-            val fragment = getFragment( key )
-            replaceFragment( fragment )
+            }
+            else {
 
-            /*
+                /*
+                 * Para garantir que somente um item de lista se
+                 * manterá selecionado, é preciso acessar o objeto
+                 * de seleção da lista de itens de usuário conectado
+                 * para então remover qualquer possível seleção
+                 * ainda presente nela. Sempre haverá somente um
+                 * item selecionado, mas infelizmente o método
+                 * clearSelection() não estava respondendo como
+                 * esperado, por isso a estratégia a seguir.
+                 * */
+                callbackRemoveSelection()
+
+                navMenu.saveLastSelectedItemFragmentID(
+                    this@MainActivity,
+                    key
+                )
+
+                val fragment = getFragment(key)
+                replaceFragment(fragment)
+
+                /*
              * Fechando o menu gaveta.
              * */
-            drawer_layout.closeDrawer( GravityCompat.START )
+                drawer_layout.closeDrawer(GravityCompat.START)
 
+            }
         }
+    }
+
+    private fun isActivityItemCalledInMenu( key: Long )
+        = when( key ){
+            R.id.item_settings.toLong() -> true
+            else -> false
     }
 }
 
