@@ -9,12 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.data.AccountSettingsItemsDataBase
 import bernardo.com.br.blueshoes.domain.User
-import bernardo.com.br.blueshoes.util.isValidEmail
-import bernardo.com.br.blueshoes.util.validate
 import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.content_account_settings.*
-import kotlinx.android.synthetic.main.content_forgot_password.*
-import kotlinx.android.synthetic.main.info_block.*
 
 class AccountSettingsActivity :
     AppCompatActivity() {

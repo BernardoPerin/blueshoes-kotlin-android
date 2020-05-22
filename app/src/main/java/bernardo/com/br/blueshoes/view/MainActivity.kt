@@ -46,7 +46,7 @@ class MainActivity :
     val user = User(
         "Bernardo Perin",
         R.drawable.user,
-        false
+        true
     )
 
     lateinit var navMenuItems : List<NavMenuItem>
@@ -293,36 +293,76 @@ class MainActivity :
             }
 
             if( isActivityItemCalledInMenu( key ) ){
-
+                itemCallActivity(key, callbackRemoveSelection)
             }
             else {
+                itemCallFragment(key, callbackRemoveSelection)
+            }
+        }
+    }
 
-                /*
-                 * Para garantir que somente um item de lista se
-                 * manterá selecionado, é preciso acessar o objeto
-                 * de seleção da lista de itens de usuário conectado
-                 * para então remover qualquer possível seleção
-                 * ainda presente nela. Sempre haverá somente um
-                 * item selecionado, mas infelizmente o método
-                 * clearSelection() não estava respondendo como
-                 * esperado, por isso a estratégia a seguir.
-                 * */
-                callbackRemoveSelection()
+    private fun itemCallActivity(
+        key: Long,
+        callbackRemoveSelection: ()->Unit) {
 
-                navMenu.saveLastSelectedItemFragmentID(
-                    this@MainActivity,
-                    key
+        callbackRemoveSelection()
+
+        navMenu.saveIsActivityItemFired(
+            this,
+            true
+        )
+
+        lateinit var intent: Intent
+
+        when (key) {
+            R.id.item_settings.toLong() -> {
+                intent = Intent(
+                    this,
+                    AccountSettingsActivity::class.java
                 )
 
-                val fragment = getFragment(key)
-                replaceFragment(fragment)
+                intent.putExtra(User.Key, user)
+            }
+        }
 
-                /*
+        startActivity(intent)
+    }
+
+    private fun itemCallFragment(
+        key: Long,
+        callbackRemoveSelection: ()->Unit) {
+
+        /*
+        * Para garantir que somente um item de lista se
+        * manterá selecionado, é preciso acessar o objeto
+        * de seleção da lista de itens de usuário conectado
+        * para então remover qualquer possível seleção
+        * ainda presente nela. Sempre haverá somente um
+        * item selecionado, mas infelizmente o método
+        * clearSelection() não estava respondendo como
+        * esperado, por isso a estratégia a seguir.
+        * */
+        callbackRemoveSelection()
+
+        navMenu.saveLastSelectedItemFragmentID(
+            this,
+            key
+        )
+
+        if( navMenu.wasIsActivityItemFired( this ) ){
+            val fragment = getFragment(key)
+            replaceFragment(fragment)
+
+            /*
              * Fechando o menu gaveta.
              * */
-                drawer_layout.closeDrawer(GravityCompat.START)
-
-            }
+            drawer_layout.closeDrawer(GravityCompat.START)
+        }
+        else{
+            navMenu.saveIsActivityItemFired(
+                this,
+                false
+            )
         }
     }
 
@@ -330,6 +370,16 @@ class MainActivity :
         = when( key ){
             R.id.item_settings.toLong() -> true
             else -> false
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        if( navMenu.wasIsActivityItemFired( this ) ){
+            selectNavMenuItems.select(
+                navMenu.getLastSelectedItemFragmentID( this )
+            )
+        }
     }
 }
 
