@@ -46,7 +46,7 @@ class MainActivity :
     val user = User(
         "Bernardo Perin",
         R.drawable.user,
-        true
+        false
     )
 
     lateinit var navMenuItems : List<NavMenuItem>
@@ -259,6 +259,11 @@ class MainActivity :
 
     fun callLoginActivity( view: View ){
         val intent = Intent( this, LoginActivity::class.java )
+        startActivity( intent )
+    }
+
+    fun calSignUpActivity( view: View ){
+        val intent = Intent( this, SignUpActivity::class.java )
         startActivity( intent )
     }
 
