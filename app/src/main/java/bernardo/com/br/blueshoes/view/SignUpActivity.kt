@@ -1,5 +1,6 @@
 package bernardo.com.br.blueshoes.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -8,6 +9,7 @@ import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.util.isValidEmail
 import bernardo.com.br.blueshoes.util.isValidPassword
 import bernardo.com.br.blueshoes.util.validate
+import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ScreenUtils
 import kotlinx.android.synthetic.main.content_sign_up.*
 
@@ -84,6 +86,16 @@ class SignUpActivity :
     }
 
     fun callLoginActivity( view: View){
-        finish()
+        if( ActivityUtils.isActivityExistsInStack( LoginActivity::class.java ) ){
+            finish()
+        }
+        else{
+            val intent = Intent(
+                this,
+                LoginActivity::class.java
+            )
+
+            startActivity( intent )
+        }
     }
 }

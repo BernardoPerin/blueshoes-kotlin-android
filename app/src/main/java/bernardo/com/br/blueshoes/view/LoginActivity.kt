@@ -9,6 +9,7 @@ import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.util.isValidEmail
 import bernardo.com.br.blueshoes.util.isValidPassword
 import bernardo.com.br.blueshoes.util.validate
+import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ScreenUtils
 import kotlinx.android.synthetic.main.content_login.*
 
@@ -87,11 +88,17 @@ class LoginActivity :
     }
 
     fun callSignUpActivity( view: View){
-        val intent = Intent(
-            this,
-            SignUpActivity::class.java
-        )
 
-        startActivity( intent )
+        if( ActivityUtils.isActivityExistsInStack( SignUpActivity::class.java ) ){
+           finish()
+        }
+        else{
+            val intent = Intent(
+                this,
+                SignUpActivity::class.java
+            )
+
+            startActivity( intent )
+        }
     }
 }
