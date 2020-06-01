@@ -7,15 +7,10 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.domain.User
-import bernardo.com.br.blueshoes.util.isValidEmail
 import bernardo.com.br.blueshoes.util.validate
 import com.blankj.utilcode.util.KeyboardUtils
 import com.blankj.utilcode.util.ScreenUtils
 import kotlinx.android.synthetic.main.content_config_profile.*
-import kotlinx.android.synthetic.main.content_forgot_password.*
-import kotlinx.android.synthetic.main.content_login.*
-import kotlinx.android.synthetic.main.info_block.*
-import kotlinx.android.synthetic.main.text_view_privacy_policy_login.*
 
 class ConfigProfileActivity :
     FormActivity(),
@@ -92,33 +87,34 @@ class ConfigProfileActivity :
         isKeyBoardOpened: Boolean
     ){
 
-        val privacyId = tv_privacy_policy.id
-        val parent = tv_privacy_policy.parent as ConstraintLayout
+        val photoProfileId = iv_profile.id
+        val parent = iv_profile.parent as ConstraintLayout
         val constraintSet = ConstraintSet()
+        val size = (108 * ScreenUtils.getScreenDensity().toInt())
 
         constraintSet.constrainWidth(
-            privacyId,
-            ConstraintLayout.LayoutParams.WRAP_CONTENT
+            photoProfileId,
+            size
         )
         constraintSet.constrainHeight(
-            privacyId,
-            ConstraintLayout.LayoutParams.WRAP_CONTENT
+            photoProfileId,
+            size
         )
 
         constraintSet.centerHorizontally(
-            privacyId,
+            photoProfileId,
             ConstraintLayout.LayoutParams.PARENT_ID
         )
 
         if( isConstraintToSiblingView( isKeyBoardOpened ) ){
-            setConstraintsRelativeToSiblingView( constraintSet, privacyId)
+            setConstraintsRelativeToSiblingView( constraintSet, photoProfileId)
         }
         else{
             constraintSet.connect(
-                privacyId,
-                ConstraintLayout.LayoutParams.BOTTOM,
+                photoProfileId,
+                ConstraintLayout.LayoutParams.TOP,
                 ConstraintLayout.LayoutParams.PARENT_ID,
-                ConstraintLayout.LayoutParams.BOTTOM
+                ConstraintLayout.LayoutParams.TOP
             )
         }
 

@@ -46,7 +46,7 @@ class MainActivity :
     val user = User(
         "Bernardo Perin",
         R.drawable.user,
-        false
+        true
     )
 
     lateinit var navMenuItems : List<NavMenuItem>

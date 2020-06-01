@@ -23,7 +23,7 @@ class AccountSettingsActivity :
         supportActionBar?.setDisplayHomeAsUpEnabled( true )
         supportActionBar?.setDisplayShowHomeEnabled( true )
 
-        val user = intent.getParcelableExtra<User>(User.Key)
+        val user = getUser()
 
         tv_user_connected.text = String.format(
             "%s %s",
@@ -33,6 +33,9 @@ class AccountSettingsActivity :
 
         initItems()
     }
+
+    fun getUser()
+        = intent.getParcelableExtra<User>(User.Key)
 
     override fun onOptionsItemSelected( item: MenuItem): Boolean {
         if ( item.itemId == android.R.id.home ) {
