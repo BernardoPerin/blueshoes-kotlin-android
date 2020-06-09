@@ -1,15 +1,23 @@
 package bernardo.com.br.blueshoes.view
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.domain.User
 import bernardo.com.br.blueshoes.util.validate
+import com.blankj.utilcode.util.ColorUtils
 import com.blankj.utilcode.util.KeyboardUtils
 import com.blankj.utilcode.util.ScreenUtils
+import com.nguyenhoanglam.imagepicker.model.Config.EXTRA_IMAGES
+import com.nguyenhoanglam.imagepicker.model.Config.RC_PICK_IMAGES
+import com.nguyenhoanglam.imagepicker.model.Image
+import com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePicker
 import kotlinx.android.synthetic.main.content_config_profile.*
 
 class ConfigProfileActivity :
@@ -35,6 +43,8 @@ class ConfigProfileActivity :
 
         val user = intent.getParcelableExtra<User>( User.Key )
         et_name.setText( user.name )
+
+        riv_profile.setImageResource( user.image )
     }
 
     override fun getLayoutResourceID()
@@ -48,7 +58,7 @@ class ConfigProfileActivity :
     }
 
     override fun blockFields( status: Boolean ){
-        iv_profile.isEnabled = !status
+        riv_profile.isEnabled = !status
         et_name.isEnabled = !status
         bt_send_profile.isEnabled = !status
     }
@@ -59,12 +69,6 @@ class ConfigProfileActivity :
                 getString(R.string.config_profile_going)
             else
                 getString(R.string.config_profile)
-    }
-
-    fun callGallery( view: View ){
-        Toast
-            .makeText( this, "TODO", Toast.LENGTH_SHORT)
-            .show()
     }
 
     override fun onDestroy() {
@@ -87,8 +91,8 @@ class ConfigProfileActivity :
         isKeyBoardOpened: Boolean
     ){
 
-        val photoProfileId = iv_profile.id
-        val parent = iv_profile.parent as ConstraintLayout
+        val photoProfileId = riv_profile.id
+        val parent = riv_profile.parent as ConstraintLayout
         val constraintSet = ConstraintSet()
         val size = (108 * ScreenUtils.getScreenDensity().toInt())
 
@@ -135,5 +139,69 @@ class ConfigProfileActivity :
             ConstraintLayout.LayoutParams.TOP,
             (30 * ScreenUtils.getScreenDensity().toInt())
         )
+    }
+
+    fun callGallery( view: View ){
+        val colorPrimary = ColorUtils.int2ArgbString(
+            ColorUtils.getColor(R.color.colorPrimary)
+        )
+        val colorPrimaryDark = ColorUtils.int2ArgbString(
+            ColorUtils.getColor(R.color.colorPrimaryDark)
+        )
+        val colorText = ColorUtils.int2ArgbString(
+            ColorUtils.getColor(R.color.colorText)
+        )
+        val colorWhite = ColorUtils.int2ArgbString(
+            Color.WHITE
+        )
+
+        ImagePicker
+            .with( this ) /* Inicializa a ImagePicker API com um context (Activity ou Fragment) */
+            .setToolbarColor( colorPrimary )
+            .setStatusBarColor( colorPrimaryDark )
+            .setToolbarTextColor( colorText )
+            .setToolbarIconColor( colorText )
+            .setProgressBarColor( colorPrimaryDark )
+            .setBackgroundColor( colorWhite )
+            .setMultipleMode( false )
+            .setFolderMode( true )
+            .setShowCamera( true )
+            .setFolderTitle( getString(R.string.imagepicker_gallery_activity) ) /* Nome da tela de galeria da ImagePicker API (funciona quando FolderMode = true). */
+            .setLimitMessage( getString(R.string.imagepicker_selection_limit) )
+            .setSavePath( getString(R.string.imagepicker_cam_photos_activity) ) /* Folder das imagens de câmera, tiradas a partir da ImagePicker API. */
+            .setRequestCode( RC_PICK_IMAGES )
+            .setKeepScreenOn( true ) /* Mantém a tela acionada enquanto a galeria estiver aberta. */
+            .start()
+    }
+
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent? ) {
+
+        if( requestCode == RC_PICK_IMAGES
+            && resultCode == Activity.RESULT_OK
+            && data != null ){
+
+            val images = data.getParcelableArrayListExtra<Image>( EXTRA_IMAGES )
+
+            if( images.isNotEmpty() ){
+                riv_profile.setImageURI(
+                    Uri.parse( images.first().path )
+                )
+            }
+        }
+
+        /*
+         * Note que em nossa lógica de negócio, se não houver imagem
+         * selecionada, o que estiver atualmente presente como imagem
+         * de perfil continua sendo a imagem de perfil.
+         * */
+
+        /*
+         * A invocação a super.onActivityResult() tem que
+         * vir após a verificação / obtenção da imagem.
+         * */
+        super.onActivityResult( requestCode, resultCode, data )
     }
 }
