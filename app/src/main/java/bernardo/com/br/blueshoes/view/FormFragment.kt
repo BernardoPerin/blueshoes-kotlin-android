@@ -1,7 +1,9 @@
 package bernardo.com.br.blueshoes.view
 
 
+import android.app.AlertDialog
 import android.content.ActivityNotFoundException
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
@@ -15,12 +17,16 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 
 import bernardo.com.br.blueshoes.R
+import bernardo.com.br.blueshoes.util.isValidPassword
+import bernardo.com.br.blueshoes.util.validate
+import com.blankj.utilcode.util.ColorUtils
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.content_form.*
 import kotlinx.android.synthetic.main.fragment_about.*
@@ -59,7 +65,7 @@ abstract class FormFragment :
         actionId: Int,
         event: KeyEvent?): Boolean {
 
-        mainAction()
+        callPasswordDialog()
         return false
     }
 
@@ -149,7 +155,7 @@ abstract class FormFragment :
         feesbackMessage: String
     ){
         Thread{
-            kotlin.run {
+            run {
                 SystemClock.sleep(1000)
 
                 activity!!.runOnUiThread{
@@ -157,13 +163,62 @@ abstract class FormFragment :
                     isMainButtonSending( false )
                     showProxy( false )
 
+                    val containerView = fl_proxy_container.parent as ViewGroup
+
                     snackBarFeedback(
-                        fl_form_container,
+                        containerView,
                         statusAction,
                         feesbackMessage
                     )
                 }
             }
         }.start()
+    }
+
+    fun callPasswordDialog(){
+        val builder = AlertDialog.Builder( activity!! )
+        val inflater = activity!!.layoutInflater
+
+        builder
+            .setView( inflater.inflate( R.layout.dialog_password, null ) )
+            .setPositiveButton(
+                R.string.dialog_password_go,
+                { dialog, id -> mainAction()}
+            )
+            .setNegativeButton(
+                R.string.dialog_password_cancel,
+                { dialog, id -> dialog.cancel() }
+            )
+            .setCancelable( false )
+
+        val dialog = builder.create()
+
+        dialog.setOnShowListener(
+            object : DialogInterface.OnShowListener{
+
+                override fun onShow( d: DialogInterface? ) {
+                    dialog
+                        .getButton( AlertDialog.BUTTON_POSITIVE )
+                        .setTextColor( ColorUtils.getColor(R.color.colorText) )
+                    dialog
+                        .getButton( AlertDialog.BUTTON_NEGATIVE )
+                        .setTextColor( ColorUtils.getColor(R.color.colorText) )
+
+                    val etPassword = dialog.findViewById<EditText>(R.id.et_password)!!
+                    etPassword.validate(
+                        { it.isValidPassword() },
+                        getString( R.string.invalid_password )
+                    )
+
+                    etPassword.setOnEditorActionListener {
+                            v, actionId, event ->
+                            mainAction()
+                            false
+                    }
+                }
+            }
+        )
+
+        dialog.show()
     }
 }

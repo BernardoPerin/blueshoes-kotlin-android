@@ -256,4 +256,12 @@
         <string name="imagepicker_selection_limit">
                 Apenas uma imagem pode ser selecionada.
         </string>
+
+    <!-- Dialog Password -->
+    <string name="dialog_password_info">
+        Entre com a senha para poder prosseguir:
+    </string>
+    <string name="dialog_password_hint">Senha</string>
+    <string name="dialog_password_go">PROSSEGUIR</string>
+    <string name="dialog_password_cancel">CANCELAR</string>
 </resources>
