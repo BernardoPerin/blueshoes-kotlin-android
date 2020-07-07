@@ -264,4 +264,18 @@
     <string name="dialog_password_hint">Senha</string>
     <string name="dialog_password_go">PROSSEGUIR</string>
     <string name="dialog_password_cancel">CANCELAR</string>
+
+    <!-- ConfigEmailFragment -->
+    <string name="config_connction_data_tab_email">E-MAIL</string>
+
+    <string name="hint_current_email">E-mail atual</string>
+    <string name="hint_new_email">Novo e-mail</string>
+    <string name="hint_new_email.confirm">Confirmar novo e-mail</string>
+
+    <string name="invalid_confirmed_email">
+        Confirme o e-mail informado no campo acima.
+    </string>
+
+    <string name="update_email_login">Atualiza e-mail do login</string>
+    <string name="update_email_login_going">Atualizando&#8230;</string>
 </resources>
