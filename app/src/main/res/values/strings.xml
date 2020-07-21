@@ -245,15 +245,15 @@
         Um nome válido deve ser fornecido
     </string>
 
-        <!-- Image Picker API - Adição e sobreposição de String -->
-        <string name="imagepicker_msg_no_images">
+    <!-- Image Picker API - Adição e sobreposição de String -->
+    <string name="imagepicker_msg_no_images">
                 Não há imagens na galeria.
             </string>
-        <string name="imagepicker_gallery_activity">Galeria</string>
-        <string name="imagepicker_cam_photos_activity">
+    <string name="imagepicker_gallery_activity">Galeria</string>
+    <string name="imagepicker_cam_photos_activity">
                 Fotos câmera BlueShoes
             </string>
-        <string name="imagepicker_selection_limit">
+    <string name="imagepicker_selection_limit">
                 Apenas uma imagem pode ser selecionada.
         </string>
 
@@ -266,7 +266,7 @@
     <string name="dialog_password_cancel">CANCELAR</string>
 
     <!-- ConfigEmailFragment -->
-    <string name="config_connction_data_tab_email">E-MAIL</string>
+    <string name="config_connection_data_tab_email">E-MAIL</string>
 
     <string name="hint_current_email">E-mail atual</string>
     <string name="hint_new_email">Novo e-mail</string>
@@ -278,4 +278,16 @@
 
     <string name="update_email_login">Atualiza e-mail do login</string>
     <string name="update_email_login_going">Atualizando&#8230;</string>
+
+    <!-- ConfigPasswordFragment -->
+    <string name="config_connection_data_tab_password">SENHA</string>
+
+    <string name="hint_new_password">Nova senha</string>
+    <string name="hint_new_password_confirm">Confirmar nova senha</string>
+
+    <string name="update_password">Atualizar senha</string>
+    <string name="update_password_going">Atualizando&#8230;</string>
+    <string name="title_activity_config_connection_data">ConfigConnectionDataActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 </resources>

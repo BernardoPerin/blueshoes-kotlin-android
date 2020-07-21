@@ -42,9 +42,7 @@
         Para colocarmos as cores, tamanho, negrito e família
         de fonte corretos no título da Toolbar.
     -->
-    <style
-            name="TitleAppearance"
-            parent="@android:style/TextAppearance">
+    <style name="TitleAppearance" parent="@android:style/TextAppearance">
 
         <item name="android:fontFamily">@font/pathway_gothic_one_regular</item>
         <item name="android:textSize">22sp</item>
@@ -58,9 +56,7 @@
         topo do aplicativo BlueShoes também seja aplicado às
         atividades desta API.
     -->
-    <style
-            name="imagepicker_ToolbarTitleText"
-            parent="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title">
+    <style name="imagepicker_ToolbarTitleText" parent="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title">
 
         <item name="android:fontFamily">@font/pathway_gothic_one_regular</item>
         <item name="android:textSize">22sp</item>
@@ -70,9 +66,7 @@
     <!--
         Para colocarmos a cor correta nos ícones da Toolbar.
     -->
-    <style
-            name="Toolbar"
-            parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    <style name="Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <item name="colorControlNormal">@color/colorText</item>
     </style>
