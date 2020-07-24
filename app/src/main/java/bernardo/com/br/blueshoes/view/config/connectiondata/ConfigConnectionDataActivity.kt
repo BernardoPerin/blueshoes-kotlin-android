@@ -1,25 +1,30 @@
 package bernardo.com.br.blueshoes.view.config.connectiondata
 
 import android.os.Bundle
-import com.google.android.material.tabs.TabLayout
-import androidx.viewpager.widget.ViewPager
-import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
 import bernardo.com.br.blueshoes.R
-import bernardo.com.br.blueshoes.view.config.connectiondata.ui.main.ConfigConnectionDataSectionsAdapter
+import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.activity_config_connection_data.*
 
 class ConfigConnectionDataActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_config_connection_data)
+        setSupportActionBar( toolbar )
 
         supportActionBar?.setDisplayHomeAsUpEnabled( true )
         supportActionBar?.setDisplayShowHomeEnabled( true )
 
         window.setBackgroundDrawableResource( R.drawable.bg_activity )
 
-        val sectionsPagerAdapter = ConfigConnectionDataSectionsAdapter(this, supportFragmentManager)
+        val sectionsPagerAdapter =
+            ConfigConnectionDataSectionsAdapter(
+                this,
+                supportFragmentManager
+            )
 
         val viewPager: ViewPager = findViewById(R.id.view_pager)
         viewPager.adapter = sectionsPagerAdapter

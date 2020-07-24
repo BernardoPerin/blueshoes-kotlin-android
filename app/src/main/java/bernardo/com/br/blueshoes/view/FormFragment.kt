@@ -2,12 +2,9 @@ package bernardo.com.br.blueshoes.view
 
 
 import android.app.AlertDialog
-import android.content.ActivityNotFoundException
 import android.content.DialogInterface
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
-import android.net.Uri
 import android.os.Bundle
 import android.os.SystemClock
 import android.text.SpannableString
@@ -22,14 +19,11 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-
 import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.util.isValidPassword
 import bernardo.com.br.blueshoes.util.validate
 import com.blankj.utilcode.util.ColorUtils
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.content_form.*
-import kotlinx.android.synthetic.main.fragment_about.*
 import kotlinx.android.synthetic.main.proxy_screen.*
 
 
@@ -212,6 +206,7 @@ abstract class FormFragment :
 
                     etPassword.setOnEditorActionListener {
                             v, actionId, event ->
+                            dialog.cancel()
                             mainAction()
                             false
                     }

@@ -4,6 +4,7 @@ import android.content.Context
 import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.domain.AccountSettingItem
 import bernardo.com.br.blueshoes.view.ConfigProfileActivity
+import bernardo.com.br.blueshoes.view.config.connectiondata.ConfigConnectionDataActivity
 
 class AccountSettingsItemsDataBase {
 
@@ -19,7 +20,7 @@ class AccountSettingsItemsDataBase {
                 AccountSettingItem(
                     context.getString(R.string.setting_item_login),
                     context.getString(R.string.setting_item_login_desc),
-                    ConfigProfileActivity::class.java
+                    ConfigConnectionDataActivity::class.java
                 ),
                 AccountSettingItem(
                     context.getString(R.string.setting_item_address),

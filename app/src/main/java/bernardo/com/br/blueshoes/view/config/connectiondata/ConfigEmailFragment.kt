@@ -65,9 +65,9 @@ class ConfigEmailFragment :
 
     override fun isMainButtonSending(status: Boolean) {
         bt_update_email_login.text = if( status )
-            getString(R.string.update_email_login)
-        else
             getString(R.string.update_email_login_going)
+        else
+            getString(R.string.update_email_login)
     }
 
 }

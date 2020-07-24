@@ -1,11 +1,8 @@
-package bernardo.com.br.blueshoes.view.config.connectiondata.ui.main
+package bernardo.com.br.blueshoes.view.config.connectiondata
 
 import android.content.Context
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import bernardo.com.br.blueshoes.view.config.connectiondata.ConfigEmailFragment
-import bernardo.com.br.blueshoes.view.config.connectiondata.ConfigPasswordFragment
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
