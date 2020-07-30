@@ -292,4 +292,22 @@
     <string name="title_activity_config_connection_data">
         Conexão (login)
     </string>
+
+    <!-- ConfigCreditCardsListFragment -->
+    <string name="config_credit_cards_tab_list">CARTÕES</string>
+
+    <string name="credit_card_list_empty">
+        Ainda não há cartões de crédito cadastrados.
+    </string>
+
+    <string name="credit_card_removed">
+        Cartão de crédito removido com sucesso.
+    </string>
+
+    <string name="credit_card_enterprise_label">Bandeira:</string>
+    <string name="credit_card_number_label">Número:</string>
+    <string name="credit_card_owner_name_label">Nome:</string>
+
+    <string name="remove_item">Remover</string>
+    <string name="remove_item_going">Removendo&#8230;</string>
 </resources>

@@ -10,11 +10,9 @@ import android.os.SystemClock
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.ImageSpan
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -24,6 +22,7 @@ import bernardo.com.br.blueshoes.util.isValidPassword
 import bernardo.com.br.blueshoes.util.validate
 import com.blankj.utilcode.util.ColorUtils
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_form.*
 import kotlinx.android.synthetic.main.proxy_screen.*
 
 
@@ -215,5 +214,14 @@ abstract class FormFragment :
         )
 
         dialog.show()
+    }
+
+    fun updateFlFormToFullFreeScreen(){
+        fl_form.setPadding(0,0,0,0)
+
+        val layoutParams = (fl_form.layoutParams as FrameLayout.LayoutParams)
+        layoutParams.gravity = Gravity.NO_GRAVITY
+        layoutParams.width = FrameLayout.LayoutParams.MATCH_PARENT
+        layoutParams.height = FrameLayout.LayoutParams.MATCH_PARENT
     }
 }
