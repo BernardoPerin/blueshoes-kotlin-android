@@ -13,7 +13,8 @@ import bernardo.com.br.blueshoes.domain.CreditCard
 import bernardo.com.br.blueshoes.domain.User
 
 class ConfigCreditCardsListItemsAdapter(
-        private val items : List<CreditCard>
+        private val fragment: ConfigCreditCardsListFragment,
+        private val items : MutableList<CreditCard>
     )
     : RecyclerView.Adapter<ConfigCreditCardsListItemsAdapter.ViewHolder>() {
 
@@ -56,6 +57,7 @@ class ConfigCreditCardsListItemsAdapter(
             tvOwnerName = itemView.findViewById(R.id.tv_owner_name)
 
             btRemove = itemView.findViewById(R.id.bt_remove)
+            btRemove.setOnClickListener(this)
         }
 
         fun setData( item: CreditCard ){
@@ -65,7 +67,29 @@ class ConfigCreditCardsListItemsAdapter(
         }
 
         override fun onClick(view: View) {
-            /* TODO */
+            val selectedItem = adapterPosition
+
+            fragment.callbackToUpdateItem(
+                {
+                    status -> btRemove.isEnabled = !status
+                },
+                {
+                    status ->
+                        btRemove.text = if( status )
+                            fragment.getString(R.string.remove_item_going)
+                        else
+                            fragment.getString(R.string.remove_item)
+                },
+                {
+                    status ->
+                        if( status ){
+                            items.removeAt( selectedItem )
+                            notifyItemRemoved( selectedItem )
+                        }
+                }
+            )
+
+            fragment.callPasswordDialog()
         }
     }
 }

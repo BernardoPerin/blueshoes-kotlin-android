@@ -168,7 +168,7 @@ abstract class FormFragment :
         }.start()
     }
 
-    protected fun callPasswordDialog(){
+    fun callPasswordDialog(){
         val builder = AlertDialog.Builder( activity!! )
         val inflater = activity!!.layoutInflater
 
