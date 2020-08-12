@@ -2,9 +2,11 @@ package bernardo.com.br.blueshoes.view.config.creditcards
 
 
 import android.os.Bundle
+import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.data.AccountSettingsItemsDataBase
@@ -42,10 +44,13 @@ class ConfigCreditCardsListFragment :
         val layoutManager = LinearLayoutManager(activity)
         rv_credit_cards.layoutManager = layoutManager
 
-        rv_credit_cards.adapter = ConfigCreditCardsListItemsAdapter(
+        val adapter = ConfigCreditCardsListItemsAdapter(
             this,
             CreditCardsDataBase.getItems()
         )
+
+        adapter.registerAdapterDataObserver( RecyclerViewObserver() )
+        rv_credit_cards.adapter = adapter
     }
 
     override fun getLayoutResourceID()
@@ -65,11 +70,6 @@ class ConfigCreditCardsListFragment :
     override fun isMainButtonSending(status: Boolean) {
         callbackMainButtonSending( status )
         callbackMainRemoveItem( status )
-        /*bt_update_email_login.text = if( status )
-            getString(R.string.update_email_login_going)
-        else
-            getString(R.string.update_email_login)
-        */
     }
 
     fun callbackToUpdateItem(
@@ -80,5 +80,17 @@ class ConfigCreditCardsListFragment :
         callbackBlockFields = blockFields
         callbackMainButtonSending = mainButtonSending
         callbackMainRemoveItem = removeItem
+    }
+
+    inner class RecyclerViewObserver : RecyclerView.AdapterDataObserver(){
+        override fun onItemRangeRemoved(positionStart: Int, itemCount: Int) {
+            super.onItemRangeRemoved(positionStart, itemCount)
+
+            tv_empty_list.visibility =
+                if( rv_credit_cards.adapter!!.itemCount == 0 )
+                    View.VISIBLE
+                else
+                    View.GONE
+        }
     }
 }
