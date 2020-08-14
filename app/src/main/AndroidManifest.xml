@@ -47,6 +47,10 @@
                 android:name=".view.config.connectiondata.ConfigConnectionDataActivity"
                 android:label="@string/title_activity_config_connection_data"
                 android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+                android:name=".view.config.creditcards.ConfigCreditCardsActivity"
+                android:label="@string/title_activity_config_credit_cards"
+                android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

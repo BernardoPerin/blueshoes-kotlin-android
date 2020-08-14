@@ -1,6 +1,5 @@
 package bernardo.com.br.blueshoes.view.config.creditcards
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import bernardo.com.br.blueshoes.R
-import bernardo.com.br.blueshoes.domain.AccountSettingItem
 import bernardo.com.br.blueshoes.domain.CreditCard
-import bernardo.com.br.blueshoes.domain.User
 
 class ConfigCreditCardsListItemsAdapter(
         private val fragment: ConfigCreditCardsListFragment,
@@ -69,7 +66,7 @@ class ConfigCreditCardsListItemsAdapter(
         override fun onClick(view: View) {
             val selectedItem = adapterPosition
 
-            fragment.callbackToUpdateItem(
+            fragment.callbacksToUpdateItem(
                 {
                     status -> btRemove.isEnabled = !status
                 },
@@ -82,7 +79,7 @@ class ConfigCreditCardsListItemsAdapter(
                 },
                 {
                     status ->
-                        if( status ){
+                        if( !status ){
                             items.removeAt( selectedItem )
                             notifyItemRemoved( selectedItem )
                         }

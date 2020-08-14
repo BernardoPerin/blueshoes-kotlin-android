@@ -5,6 +5,7 @@ import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.domain.AccountSettingItem
 import bernardo.com.br.blueshoes.view.ConfigProfileActivity
 import bernardo.com.br.blueshoes.view.config.connectiondata.ConfigConnectionDataActivity
+import bernardo.com.br.blueshoes.view.config.creditcards.ConfigCreditCardsActivity
 
 class AccountSettingsItemsDataBase {
 
@@ -30,7 +31,7 @@ class AccountSettingsItemsDataBase {
                 AccountSettingItem(
                     context.getString(R.string.setting_item_credit_cards),
                     context.getString(R.string.setting_item_credit_cards_desc),
-                    ConfigProfileActivity::class.java
+                    ConfigCreditCardsActivity::class.java
                 )
         )
     }

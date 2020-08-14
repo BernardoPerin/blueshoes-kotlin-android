@@ -337,4 +337,9 @@
     <string name="invalid_credit_card">
         Cartão inválido, verifique os dados novamente.
     </string>
+
+    <!-- ConfigCreditCardsActivity -->
+    <string name="title_activity_config_credit_cards">
+        Cartões de crédito
+    </string>
 </resources>

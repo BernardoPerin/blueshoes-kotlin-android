@@ -1,4 +1,4 @@
-package bernardo.com.br.blueshoes.view.config.connectiondata
+package bernardo.com.br.blueshoes.view.config.creditcards
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -8,7 +8,7 @@ import bernardo.com.br.blueshoes.R
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_tabs_user_config.*
 
-class ConfigConnectionDataActivity : AppCompatActivity() {
+class ConfigCreditCardsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +21,7 @@ class ConfigConnectionDataActivity : AppCompatActivity() {
         window.setBackgroundDrawableResource( R.drawable.bg_activity )
 
         val sectionsPagerAdapter =
-            ConfigConnectionDataSectionsAdapter(
+            ConfigCreditCardsSectionsAdapter(
                 this,
                 supportFragmentManager
             )

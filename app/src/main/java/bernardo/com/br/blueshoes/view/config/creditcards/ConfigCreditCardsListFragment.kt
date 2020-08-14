@@ -3,21 +3,12 @@ package bernardo.com.br.blueshoes.view.config.creditcards
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import bernardo.com.br.blueshoes.R
-import bernardo.com.br.blueshoes.data.AccountSettingsItemsDataBase
 import bernardo.com.br.blueshoes.data.CreditCardsDataBase
-import bernardo.com.br.blueshoes.util.isValidEmail
-import bernardo.com.br.blueshoes.util.validate
-import bernardo.com.br.blueshoes.view.AccountSettingsItemsAdapter
 import bernardo.com.br.blueshoes.view.FormFragment
-import kotlinx.android.synthetic.main.content_account_settings.*
 import kotlinx.android.synthetic.main.fragment_config_credit_cards_list.*
-import kotlinx.android.synthetic.main.fragment_config_email.*
 
 
 class ConfigCreditCardsListFragment :
@@ -72,7 +63,7 @@ class ConfigCreditCardsListFragment :
         callbackMainRemoveItem( status )
     }
 
-    fun callbackToUpdateItem(
+    fun callbacksToUpdateItem(
         blockFields : (Boolean)->Unit,
         mainButtonSending : (Boolean)->Unit,
         removeItem : (Boolean)->Unit
