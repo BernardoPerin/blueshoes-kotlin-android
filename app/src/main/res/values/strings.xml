@@ -342,4 +342,25 @@
     <string name="title_activity_config_credit_cards">
         Cartões de crédito
     </string>
+
+    <!-- ConfigDeliveryAddressesListFragment -->
+    <string name="config_delivery_addresses_tab_list">ENDEREÇOS</string>
+
+    <string name="delivery_address_street_label">Logradouro:</string>
+    <string name="delivery_address_number_label">Número:</string>
+    <string name="delivery_address_zip_code_label">CEP:</string>
+    <string name="delivery_address_neighborhood_label">Bairro:</string>
+    <string name="delivery_address_city_label">Cidade:</string>
+    <string name="delivery_address_state_label">Estado:</string>
+    <string name="delivery_address_complement_label">Complemento:</string>
+
+    <string name="update_item">Atualizar</string>
+
+    <string name="delivery_address_list_empty">
+        Ainda não há endereços de entrega cadastrados.
+    </string>
+
+    <string name="delivery_address_removed">
+        Endereço removido com sucesso.
+    </string>
 </resources>
