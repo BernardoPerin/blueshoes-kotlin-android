@@ -80,15 +80,23 @@ class ConfigDeliveryAddressesListItemsAdapter(
         }
 
         override fun onClick(view: View) {
-            /*val selectedItem = adapterPosition
+            val selectedItem = adapterPosition
 
-            fragment.callbacksToUpdateItem(
+            if( view.id == btRemove.id ){
+                toRemove( selectedItem )
+            }
+        }
+
+        private fun toRemove( position: Int ){
+            fragment.callbacksToRemoveItem(
                 {
-                    status -> btRemove.isEnabled = !status
+                    status ->
+                        btUpdate.isEnabled = !status
+                        btRemove.isEnabled = !status
                 },
                 {
                     status ->
-                        btRemove.text = if( status )
+                    btRemove.text = if( status )
                             fragment.getString(R.string.remove_item_going)
                         else
                             fragment.getString(R.string.remove_item)
@@ -96,13 +104,13 @@ class ConfigDeliveryAddressesListItemsAdapter(
                 {
                     status ->
                         if( !status ){
-                            items.removeAt( selectedItem )
-                            notifyItemRemoved( selectedItem )
+                            items.removeAt( position )
+                            notifyItemRemoved( position )
                         }
                 }
             )
 
-            fragment.callPasswordDialog()*/
+            fragment.callPasswordDialog()
         }
     }
 }
