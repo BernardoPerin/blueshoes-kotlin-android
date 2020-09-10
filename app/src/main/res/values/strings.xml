@@ -381,4 +381,10 @@
 
     <string name="add_delivery_address">Adicionar endereço</string>
     <string name="add_delivery_address_going">Adicionando&#8230;</string>
+
+    <!-- ConfigUpdateDeliveryAddressFragment -->
+    <string name="updating_delivery_address">Atualizando endereço.</string>
+
+    <string name="update_delivery_address">Atualizar endereço</string>
+    <string name="update_delivery_address_going">Atualizando&#8230;</string>
 </resources>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 
 import bernardo.com.br.blueshoes.R
+import bernardo.com.br.blueshoes.domain.DeliveryAddress
 import bernardo.com.br.blueshoes.util.isValidCNPJ
 import bernardo.com.br.blueshoes.util.isValidCPF
 import bernardo.com.br.blueshoes.view.FormFragment
@@ -12,25 +13,34 @@ import com.santalu.maskedittext.MaskEditText
 import kotlinx.android.synthetic.main.fragment_config_new_delivery_address.*
 
 
-open class ConfigNewDeliveryAddressFragment :
-    FormFragment() {
-
-    companion object{
-        const val TAB_TITLE = R.string.config_delivery_address_tab_new
-    }
+class ConfigUpdateDeliveryAddressFragment :
+    ConfigNewDeliveryAddressFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        updateFlFormToFullFreeScreen()
+        bt_nu_address.text = getString(R.string.update_delivery_address)
 
         bt_nu_address.setOnClickListener {
-            mainAction()
+            callPasswordDialog()
         }
+
+        fillForm()
+    }
+
+    private fun fillForm(){
+        val deliveryAddress = arguments!!.getParcelable<DeliveryAddress>( DeliveryAddress.KEY )
+        et_street.setText( deliveryAddress.street )
+        et_number.setText( deliveryAddress.number.toString() )
+        et_complement.setText( deliveryAddress.complement )
+        et_neighborhood.setText( deliveryAddress.neighborhood )
+        et_city.setText( deliveryAddress.city )
+        et_zip_code.setText( deliveryAddress.zipCode )
+        sp_state.setSelection( deliveryAddress.state )
     }
 
     override fun getLayoutResourceID()
-        = R.layout.fragment_config_new_delivery_address
+        = R.layout.fragment_config_update_delivery_address
 
     override fun backEndFakeDelay() {
         backEndFakeDelay(
@@ -52,9 +62,9 @@ open class ConfigNewDeliveryAddressFragment :
 
     override fun isMainButtonSending(status: Boolean) {
         bt_nu_address.text = if( status )
-            getString(R.string.add_delivery_address_going)
+            getString(R.string.update_delivery_address_going)
         else
-            getString(R.string.add_delivery_address)
+            getString(R.string.update_delivery_address)
     }
 
 }
