@@ -1,10 +1,12 @@
 package bernardo.com.br.blueshoes.view.config.deliveryaddress
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.domain.DeliveryAddress
@@ -85,6 +87,9 @@ class ConfigDeliveryAddressesListItemsAdapter(
             if( view.id == btRemove.id ){
                 toRemove( selectedItem )
             }
+            else{
+                toUpdate( selectedItem )
+            }
         }
 
         private fun toRemove( position: Int ){
@@ -111,6 +116,31 @@ class ConfigDeliveryAddressesListItemsAdapter(
             )
 
             fragment.callPasswordDialog()
+        }
+
+        private fun toUpdate( position: Int ){
+
+            val updateFrag = ConfigUpdateDeliveryAddressFragment()
+
+            val bundle = Bundle()
+            bundle.putParcelable(
+                DeliveryAddress.KEY,
+                items[ position ]
+            )
+            updateFrag.arguments = bundle
+
+            val transaction = fragment
+                .fragmentManager!!
+                .beginTransaction()
+
+            transaction
+                .replace(
+                    R.id.fl_root,
+                    updateFrag
+                )
+                .setTransition( FragmentTransaction.TRANSIT_FRAGMENT_OPEN )
+                .addToBackStack(null)
+                .commit()
         }
     }
 }

@@ -387,4 +387,9 @@
 
     <string name="update_delivery_address">Atualizar endereço</string>
     <string name="update_delivery_address_going">Atualizando&#8230;</string>
+
+    <!-- ConfigDeliveryAddressesActivity -->
+    <string name="title_activity_config_delivery_addresses">
+        Endereços para entrega
+    </string>
 </resources>
