@@ -2,14 +2,8 @@ package bernardo.com.br.blueshoes.view.config.deliveryaddress
 
 
 import android.os.Bundle
-import android.view.View
-
 import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.domain.DeliveryAddress
-import bernardo.com.br.blueshoes.util.isValidCNPJ
-import bernardo.com.br.blueshoes.util.isValidCPF
-import bernardo.com.br.blueshoes.view.FormFragment
-import com.santalu.maskedittext.MaskEditText
 import kotlinx.android.synthetic.main.fragment_config_new_delivery_address.*
 
 

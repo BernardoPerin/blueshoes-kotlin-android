@@ -6,7 +6,6 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bernardo.com.br.blueshoes.R
-import bernardo.com.br.blueshoes.data.CreditCardsDataBase
 import bernardo.com.br.blueshoes.data.DeliveryAddressesDataBase
 import bernardo.com.br.blueshoes.view.FormFragment
 import kotlinx.android.synthetic.main.fragment_config_delivery_addresses_list.*

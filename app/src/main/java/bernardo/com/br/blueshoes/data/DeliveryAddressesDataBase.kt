@@ -1,6 +1,5 @@
 package bernardo.com.br.blueshoes.data
 
-import bernardo.com.br.blueshoes.domain.CreditCard
 import bernardo.com.br.blueshoes.domain.DeliveryAddress
 
 class DeliveryAddressesDataBase {

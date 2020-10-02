@@ -6,13 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import bernardo.com.br.blueshoes.R
-import bernardo.com.br.blueshoes.data.CreditCardsDataBase
-import bernardo.com.br.blueshoes.data.DeliveryAddressesDataBase
-import bernardo.com.br.blueshoes.view.FormFragment
-import kotlinx.android.synthetic.main.fragment_config_delivery_addresses_list.*
 
 
 class ConfigDeliveryAddressHostFragment :
@@ -38,7 +32,7 @@ class ConfigDeliveryAddressHostFragment :
 
             transaction
                 .replace(
-                    R.id.fl_form,
+                    R.id.fl_root,
                     ConfigDeliveryAddressesListFragment()
                 )
                 .commit()

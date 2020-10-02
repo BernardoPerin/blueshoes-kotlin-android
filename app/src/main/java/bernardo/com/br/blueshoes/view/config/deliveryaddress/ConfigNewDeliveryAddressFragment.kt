@@ -2,13 +2,8 @@ package bernardo.com.br.blueshoes.view.config.deliveryaddress
 
 
 import android.os.Bundle
-import android.view.View
-
 import bernardo.com.br.blueshoes.R
-import bernardo.com.br.blueshoes.util.isValidCNPJ
-import bernardo.com.br.blueshoes.util.isValidCPF
 import bernardo.com.br.blueshoes.view.FormFragment
-import com.santalu.maskedittext.MaskEditText
 import kotlinx.android.synthetic.main.fragment_config_new_delivery_address.*
 
 
@@ -17,6 +12,7 @@ open class ConfigNewDeliveryAddressFragment :
 
     companion object{
         const val TAB_TITLE = R.string.config_delivery_address_tab_new
+        const val PAGER_POS = 1
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
