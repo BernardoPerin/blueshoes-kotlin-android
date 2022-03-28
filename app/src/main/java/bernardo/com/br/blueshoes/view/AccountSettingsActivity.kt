@@ -25,11 +25,13 @@ class AccountSettingsActivity :
 
         val user = getUser()
 
-        tv_user_connected.text = String.format(
-            "%s %s",
-            getString(R.string.connected),
-            user.name
-        )
+        if (user != null) {
+            tv_user_connected.text = String.format(
+                "%s %s",
+                getString(R.string.connected),
+                user.name
+            )
+        }
 
         initItems()
     }

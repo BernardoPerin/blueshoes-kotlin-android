@@ -42,9 +42,13 @@ class ConfigProfileActivity :
         et_name.setOnEditorActionListener( this )
 
         val user = intent.getParcelableExtra<User>( User.Key )
-        et_name.setText( user.name )
+        if (user != null) {
+            et_name.setText( user.name )
+        }
 
-        riv_profile.setImageResource( user.image )
+        if (user != null) {
+            riv_profile.setImageResource( user.image )
+        }
     }
 
     override fun getLayoutResourceID()
@@ -185,10 +189,12 @@ class ConfigProfileActivity :
 
             val images = data.getParcelableArrayListExtra<Image>( EXTRA_IMAGES )
 
-            if( images.isNotEmpty() ){
-                riv_profile.setImageURI(
-                    Uri.parse( images.first().path )
-                )
+            if (images != null) {
+                if( images.isNotEmpty() ){
+                    riv_profile.setImageURI(
+                        Uri.parse( images.first().path )
+                    )
+                }
             }
         }
 

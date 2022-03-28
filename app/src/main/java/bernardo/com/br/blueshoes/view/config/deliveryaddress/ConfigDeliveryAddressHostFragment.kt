@@ -26,7 +26,7 @@ class ConfigDeliveryAddressHostFragment :
         )
 
         if ( savedInstanceState == null ){
-            val transaction = activity!!
+            val transaction = requireActivity()
                 .supportFragmentManager
                 .beginTransaction()
 

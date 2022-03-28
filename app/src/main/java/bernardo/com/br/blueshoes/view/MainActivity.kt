@@ -225,7 +225,7 @@ class MainActivity :
         toolbar.title = getString( titleId )
     }
 
-    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
         super.onSaveInstanceState(outState)
 
         selectNavMenuItems.onSaveInstanceState( outState!! )

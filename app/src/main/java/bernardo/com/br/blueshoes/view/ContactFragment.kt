@@ -85,7 +85,7 @@ class ContactFragment : Fragment(), View.OnClickListener {
 
         intent.data = Uri.parse( "tel:$phoneNumber" )
 
-        activity!!.startActivity( intent )
+        requireActivity().startActivity( intent )
     }
 
     private fun mailToIntent( emailAddress: String ){
@@ -104,7 +104,7 @@ class ContactFragment : Fragment(), View.OnClickListener {
                     intent,
                     getString( R.string.chooser_email_text )
                 )
-            activity!!.startActivity( intentChooser )
+            requireActivity().startActivity( intentChooser )
         }
         catch ( e: ActivityNotFoundException ){
             Toast
@@ -127,7 +127,7 @@ class ContactFragment : Fragment(), View.OnClickListener {
         intent.setPackage( "com.google.android.apps.maps" )
 
         try {
-            activity!!.startActivity( intent )
+            requireActivity().startActivity( intent )
         }
         catch ( e: ActivityNotFoundException ){
             Toast

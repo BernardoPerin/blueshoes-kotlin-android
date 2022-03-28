@@ -1,5 +1,6 @@
 package bernardo.com.br.blueshoes.view.config.deliveryaddress
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -77,7 +78,7 @@ class ConfigDeliveryAddressesListItemsAdapter(
             tvZipCode.text = item.zipCode
             tvNeighborhood.text = item.neighborhood
             tvCity.text = item.city
-            tvState.setText( item.getStateName( fragment.context!! ) )
+            tvState.setText( item.getStateName( fragment.requireContext() ) )
             tvComplement.text = item.complement
         }
 
@@ -118,7 +119,8 @@ class ConfigDeliveryAddressesListItemsAdapter(
             fragment.callPasswordDialog()
         }
 
-        private fun toUpdate( position: Int ){
+        @SuppressLint("UseRequireInsteadOfGet")
+        private fun toUpdate(position: Int ){
 
             val updateFrag = ConfigUpdateDeliveryAddressFragment()
 

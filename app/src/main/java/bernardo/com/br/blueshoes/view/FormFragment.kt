@@ -105,7 +105,7 @@ abstract class FormFragment :
         val iconColor =
             if ( status )
                 ContextCompat.getColor(
-                    activity!!,
+                    requireActivity(),
                     R.color.colorNavButton
                 )
             else
@@ -151,7 +151,7 @@ abstract class FormFragment :
             run {
                 SystemClock.sleep(1000)
 
-                activity!!.runOnUiThread{
+                requireActivity().runOnUiThread{
                     blockFields( false )
                     isMainButtonSending( false )
                     showProxy( false )
@@ -169,8 +169,8 @@ abstract class FormFragment :
     }
 
     fun callPasswordDialog(){
-        val builder = AlertDialog.Builder( activity!! )
-        val inflater = activity!!.layoutInflater
+        val builder = AlertDialog.Builder( requireActivity() )
+        val inflater = requireActivity().layoutInflater
 
         builder
             .setView( inflater.inflate( R.layout.dialog_password, null ) )

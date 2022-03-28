@@ -35,6 +35,10 @@ class ForgotPasswordActivity :
         )
     }
 
+    override fun onSoftInputChanged(height: Int) {
+
+    }
+
     override fun blockFields( status: Boolean ){
         et_email.isEnabled = !status
         bt_recover_password.isEnabled = !status

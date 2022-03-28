@@ -164,4 +164,6 @@ abstract class FormActivity :
             }
         }.start()
     }
+
+    abstract fun onSoftInputChanged(height: Int)
 }

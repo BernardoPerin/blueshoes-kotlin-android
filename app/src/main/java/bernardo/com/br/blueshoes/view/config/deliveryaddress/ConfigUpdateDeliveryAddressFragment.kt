@@ -23,14 +23,16 @@ class ConfigUpdateDeliveryAddressFragment :
     }
 
     private fun fillForm(){
-        val deliveryAddress = arguments!!.getParcelable<DeliveryAddress>( DeliveryAddress.KEY )
-        et_street.setText( deliveryAddress.street )
-        et_number.setText( deliveryAddress.number.toString() )
-        et_complement.setText( deliveryAddress.complement )
-        et_neighborhood.setText( deliveryAddress.neighborhood )
-        et_city.setText( deliveryAddress.city )
-        et_zip_code.setText( deliveryAddress.zipCode )
-        sp_state.setSelection( deliveryAddress.state )
+        val deliveryAddress = requireArguments().getParcelable<DeliveryAddress>( DeliveryAddress.KEY )
+        if (deliveryAddress != null) {
+            et_street.setText( deliveryAddress.street )
+            et_number.setText( deliveryAddress.number.toString() )
+            et_complement.setText( deliveryAddress.complement )
+            et_neighborhood.setText( deliveryAddress.neighborhood )
+            et_city.setText( deliveryAddress.city )
+            et_zip_code.setText( deliveryAddress.zipCode )
+            sp_state.setSelection( deliveryAddress.state )
+        }
     }
 
     override fun getLayoutResourceID()

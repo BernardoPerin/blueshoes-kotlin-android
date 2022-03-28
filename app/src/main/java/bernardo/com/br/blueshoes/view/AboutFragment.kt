@@ -105,10 +105,10 @@ class AboutFragment :
         intent.setPackage( appPackage )
 
         try {
-            activity!!.startActivity( intent )
+            requireActivity().startActivity( intent )
         }
         catch( e: ActivityNotFoundException ){
-            activity!!.startActivity(
+            requireActivity().startActivity(
                 Intent(
                     Intent.ACTION_VIEW,
                     Uri.parse( webAddress )
