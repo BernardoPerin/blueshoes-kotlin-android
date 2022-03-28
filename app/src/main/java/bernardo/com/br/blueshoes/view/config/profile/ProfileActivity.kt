@@ -1,4 +1,4 @@
-package bernardo.com.br.blueshoes.view
+package bernardo.com.br.blueshoes.view.config.profile
 
 import android.app.Activity
 import android.content.Intent
@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.domain.User
 import bernardo.com.br.blueshoes.util.validate
+import bernardo.com.br.blueshoes.view.FormActivity
 import com.blankj.utilcode.util.ColorUtils
 import com.blankj.utilcode.util.KeyboardUtils
 import com.blankj.utilcode.util.ScreenUtils
@@ -20,7 +21,7 @@ import com.nguyenhoanglam.imagepicker.model.Image
 import com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePicker
 import kotlinx.android.synthetic.main.content_config_profile.*
 
-class ConfigProfileActivity :
+class ProfileActivity :
     FormActivity(),
     KeyboardUtils.OnSoftInputChangedListener{
 

@@ -22,6 +22,7 @@ import bernardo.com.br.blueshoes.domain.User
 import bernardo.com.br.blueshoes.util.NavMenuItemDetailsLookup
 import bernardo.com.br.blueshoes.util.NavMenuItemKeyProvider
 import bernardo.com.br.blueshoes.util.NavMenuItemPredicate
+import bernardo.com.br.blueshoes.view.config.AccountSettingsActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.nav_header_user_logged.*

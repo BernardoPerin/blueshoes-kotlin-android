@@ -1,4 +1,4 @@
-package bernardo.com.br.blueshoes.view
+package bernardo.com.br.blueshoes.view.config
 
 import android.content.Intent
 import android.view.LayoutInflater

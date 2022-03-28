@@ -3,7 +3,7 @@ package bernardo.com.br.blueshoes.data
 import android.content.Context
 import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.domain.AccountSettingItem
-import bernardo.com.br.blueshoes.view.ConfigProfileActivity
+import bernardo.com.br.blueshoes.view.config.profile.ProfileActivity
 import bernardo.com.br.blueshoes.view.config.connectiondata.ConfigConnectionDataActivity
 import bernardo.com.br.blueshoes.view.config.creditcards.ConfigCreditCardsActivity
 import bernardo.com.br.blueshoes.view.config.deliveryaddress.ConfigDeliveryAddressesActivity
@@ -17,7 +17,7 @@ class AccountSettingsItemsDataBase {
                 AccountSettingItem(
                     context.getString(R.string.setting_item_profile),
                     context.getString(R.string.setting_item_profile_desc),
-                    ConfigProfileActivity::class.java
+                    ProfileActivity::class.java
                 ),
                 AccountSettingItem(
                     context.getString(R.string.setting_item_login),

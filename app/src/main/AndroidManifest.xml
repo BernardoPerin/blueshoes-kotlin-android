@@ -37,11 +37,11 @@
                 android:label="@string/title_activity_sign_up"
                 android:theme="@style/AppTheme.NoActionBar" />
         <activity
-                android:name=".view.AccountSettingsActivity"
+                android:name=".view.config.AccountSettingsActivity"
                 android:label="@string/title_activity_account_settings"
                 android:theme="@style/AppTheme.NoActionBar" />
         <activity
-                android:name=".view.ConfigProfileActivity"
+                android:name=".view.config.profile.ProfileActivity"
                 android:label="@string/title_activity_config_profile"
                 android:theme="@style/AppTheme.NoActionBar" />
         <activity
