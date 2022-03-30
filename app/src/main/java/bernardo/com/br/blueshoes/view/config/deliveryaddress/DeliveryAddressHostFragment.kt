@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import bernardo.com.br.blueshoes.R
+import bernardo.com.br.blueshoes.view.config.ConfigFormFragment
 
 
-class ConfigDeliveryAddressHostFragment :
-    Fragment() {
+class DeliveryAddressHostFragment :
+    ConfigFormFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,11 +33,22 @@ class ConfigDeliveryAddressHostFragment :
             transaction
                 .replace(
                     R.id.fl_root,
-                    ConfigDeliveryAddressesListFragment()
+                    DeliveryAddressesListFragment()
                 )
                 .commit()
         }
 
         return view
     }
+
+    override fun title()
+        = DeliveryAddressesListFragment.TAB_TITLE
+
+    override fun getLayoutResourceID() = 0
+
+    override fun backEndFakeDelay() {}
+
+    override fun blockFields(status: Boolean) {}
+
+    override fun isMainButtonSending(status: Boolean) {}
 }

@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.RecyclerView
 import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.domain.DeliveryAddress
 
-class ConfigDeliveryAddressesListItemsAdapter(
-        private val fragment: ConfigDeliveryAddressesListFragment,
-        private val items : MutableList<DeliveryAddress>
+class DeliveryAddressesListAdapter(
+    private val fragment: DeliveryAddressesListFragment,
+    private val items : MutableList<DeliveryAddress>
     )
-    : RecyclerView.Adapter<ConfigDeliveryAddressesListItemsAdapter.ViewHolder>() {
+    : RecyclerView.Adapter<DeliveryAddressesListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -122,7 +122,7 @@ class ConfigDeliveryAddressesListItemsAdapter(
         @SuppressLint("UseRequireInsteadOfGet")
         private fun toUpdate(position: Int ){
 
-            val updateFrag = ConfigUpdateDeliveryAddressFragment()
+            val updateFrag = FormUpdateDeliveryAddressFragment()
 
             val bundle = Bundle()
             bundle.putParcelable(

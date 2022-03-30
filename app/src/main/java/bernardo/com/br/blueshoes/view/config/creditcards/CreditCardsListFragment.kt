@@ -1,4 +1,4 @@
-package bernardo.com.br.blueshoes.view.config.deliveryaddress
+package bernardo.com.br.blueshoes.view.config.creditcards
 
 
 import android.os.Bundle
@@ -6,16 +6,16 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bernardo.com.br.blueshoes.R
-import bernardo.com.br.blueshoes.data.DeliveryAddressesDataBase
+import bernardo.com.br.blueshoes.data.CreditCardsDataBase
 import bernardo.com.br.blueshoes.view.FormFragment
-import kotlinx.android.synthetic.main.fragment_config_delivery_addresses_list.*
+import kotlinx.android.synthetic.main.fragment_config_credit_cards_list.*
 
 
-class ConfigDeliveryAddressesListFragment :
+class CreditCardsListFragment :
     FormFragment() {
 
     companion object{
-        const val TAB_TITLE = R.string.config_delivery_addresses_tab_list
+        const val TAB_TITLE = R.string.config_credit_cards_tab_list
     }
 
     var callbackBlockFields : (Boolean)->Unit = {}
@@ -30,27 +30,27 @@ class ConfigDeliveryAddressesListFragment :
     }
 
     private fun initItems(){
-        rv_delivery_addresses.setHasFixedSize( true )
+        rv_credit_cards.setHasFixedSize( true )
 
         val layoutManager = LinearLayoutManager(activity)
-        rv_delivery_addresses.layoutManager = layoutManager
+        rv_credit_cards.layoutManager = layoutManager
 
-        val adapter = ConfigDeliveryAddressesListItemsAdapter(
+        val adapter = CreditCardsListAdapter(
             this,
-            DeliveryAddressesDataBase.getItems()
+            CreditCardsDataBase.getItems()
         )
 
         adapter.registerAdapterDataObserver( RecyclerViewObserver() )
-        rv_delivery_addresses.adapter = adapter
+        rv_credit_cards.adapter = adapter
     }
 
     override fun getLayoutResourceID()
-        = R.layout.fragment_config_delivery_addresses_list
+        = R.layout.fragment_config_credit_cards_list
 
     override fun backEndFakeDelay() {
         backEndFakeDelay(
             true,
-            getString(R.string.delivery_address_removed)
+            getString(R.string.credit_card_removed)
         )
     }
 
@@ -63,7 +63,7 @@ class ConfigDeliveryAddressesListFragment :
         callbackMainRemoveItem( status )
     }
 
-    fun callbacksToRemoveItem(
+    fun callbacksToUpdateItem(
         blockFields : (Boolean)->Unit,
         mainButtonSending : (Boolean)->Unit,
         removeItem : (Boolean)->Unit
@@ -78,7 +78,7 @@ class ConfigDeliveryAddressesListFragment :
             super.onItemRangeRemoved(positionStart, itemCount)
 
             tv_empty_list.visibility =
-                if( rv_delivery_addresses.adapter!!.itemCount == 0 )
+                if( rv_credit_cards.adapter!!.itemCount == 0 )
                     View.VISIBLE
                 else
                     View.GONE

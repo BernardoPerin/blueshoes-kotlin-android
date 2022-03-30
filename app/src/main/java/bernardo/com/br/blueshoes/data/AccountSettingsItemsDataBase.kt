@@ -4,9 +4,9 @@ import android.content.Context
 import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.domain.AccountSettingItem
 import bernardo.com.br.blueshoes.view.config.profile.ProfileActivity
-import bernardo.com.br.blueshoes.view.config.connectiondata.ConfigConnectionDataActivity
-import bernardo.com.br.blueshoes.view.config.creditcards.ConfigCreditCardsActivity
-import bernardo.com.br.blueshoes.view.config.deliveryaddress.ConfigDeliveryAddressesActivity
+import bernardo.com.br.blueshoes.view.config.connectiondata.ConnectDataActivity
+import bernardo.com.br.blueshoes.view.config.creditcards.CreditCardsActivity
+import bernardo.com.br.blueshoes.view.config.deliveryaddress.DeliveryAddressesActivity
 
 class AccountSettingsItemsDataBase {
 
@@ -22,17 +22,17 @@ class AccountSettingsItemsDataBase {
                 AccountSettingItem(
                     context.getString(R.string.setting_item_login),
                     context.getString(R.string.setting_item_login_desc),
-                    ConfigConnectionDataActivity::class.java
+                    ConnectDataActivity::class.java
                 ),
                 AccountSettingItem(
                     context.getString(R.string.setting_item_address),
                     context.getString(R.string.setting_item_address_desc),
-                    ConfigDeliveryAddressesActivity::class.java
+                    DeliveryAddressesActivity::class.java
                 ),
                 AccountSettingItem(
                     context.getString(R.string.setting_item_credit_cards),
                     context.getString(R.string.setting_item_credit_cards_desc),
-                    ConfigCreditCardsActivity::class.java
+                    CreditCardsActivity::class.java
                 )
         )
     }

@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.domain.CreditCard
 
-class ConfigCreditCardsListItemsAdapter(
-        private val fragment: ConfigCreditCardsListFragment,
-        private val items : MutableList<CreditCard>
+class CreditCardsListAdapter(
+    private val fragment: CreditCardsListFragment,
+    private val items : MutableList<CreditCard>
     )
-    : RecyclerView.Adapter<ConfigCreditCardsListItemsAdapter.ViewHolder>() {
+    : RecyclerView.Adapter<CreditCardsListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

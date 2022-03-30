@@ -7,8 +7,8 @@ import bernardo.com.br.blueshoes.domain.DeliveryAddress
 import kotlinx.android.synthetic.main.fragment_config_new_delivery_address.*
 
 
-class ConfigUpdateDeliveryAddressFragment :
-    ConfigNewDeliveryAddressFragment() {
+class FormUpdateDeliveryAddressFragment :
+    FormNewDeliveryAddressFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

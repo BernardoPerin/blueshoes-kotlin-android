@@ -5,16 +5,15 @@ import android.os.Bundle
 import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.util.isValidPassword
 import bernardo.com.br.blueshoes.util.validate
-import bernardo.com.br.blueshoes.view.FormFragment
+import bernardo.com.br.blueshoes.view.config.ConfigFormFragment
 import kotlinx.android.synthetic.main.fragment_config_password.*
 
 
-class ConfigPasswordFragment :
-    FormFragment() {
+class FormPasswordFragment :
+    ConfigFormFragment() {
 
-    companion object{
-        const val TAB_TITLE = R.string.config_connection_data_tab_password
-    }
+    override fun title()
+        = R.string.config_connection_data_tab_password
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

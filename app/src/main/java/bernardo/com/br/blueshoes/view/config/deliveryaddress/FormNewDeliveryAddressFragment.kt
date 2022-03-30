@@ -3,17 +3,19 @@ package bernardo.com.br.blueshoes.view.config.deliveryaddress
 
 import android.os.Bundle
 import bernardo.com.br.blueshoes.R
-import bernardo.com.br.blueshoes.view.FormFragment
+import bernardo.com.br.blueshoes.view.config.ConfigFormFragment
 import kotlinx.android.synthetic.main.fragment_config_new_delivery_address.*
 
 
-open class ConfigNewDeliveryAddressFragment :
-    FormFragment() {
+open class FormNewDeliveryAddressFragment :
+    ConfigFormFragment() {
 
     companion object{
-        const val TAB_TITLE = R.string.config_delivery_address_tab_new
         const val PAGER_POS = 1
     }
+
+    override fun title()
+            = R.string.config_delivery_address_tab_new
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

@@ -45,16 +45,16 @@
                 android:label="@string/title_activity_config_profile"
                 android:theme="@style/AppTheme.NoActionBar" />
         <activity
-                android:name=".view.config.connectiondata.ConfigConnectionDataActivity"
+                android:name=".view.config.connectiondata.ConnectDataActivity"
                 android:label="@string/title_activity_config_connection_data"
                 android:theme="@style/AppTheme.NoActionBar" />
         <activity
-                android:name=".view.config.creditcards.ConfigCreditCardsActivity"
+                android:name=".view.config.creditcards.CreditCardsActivity"
                 android:label="@string/title_activity_config_credit_cards"
                 android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-                android:name=".view.config.deliveryaddress.ConfigDeliveryAddressesActivity"
+                android:name=".view.config.deliveryaddress.DeliveryAddressesActivity"
                 android:label="@string/title_activity_config_delivery_addresses"
                 android:theme="@style/AppTheme.NoActionBar" />
     </application>

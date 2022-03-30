@@ -66,7 +66,7 @@ class AccountSettingsActivity :
         )
         rv_account_settings_items.addItemDecoration( divider )
 
-        rv_account_settings_items.adapter = AccountSettingsItemsAdapter(
+        rv_account_settings_items.adapter = AccountSettingsListAdapter(
             AccountSettingsItemsDataBase.getItems( this )
         )
     }

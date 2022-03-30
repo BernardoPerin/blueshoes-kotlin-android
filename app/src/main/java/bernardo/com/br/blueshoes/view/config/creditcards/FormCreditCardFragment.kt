@@ -7,18 +7,17 @@ import android.view.View
 import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.util.isValidCNPJ
 import bernardo.com.br.blueshoes.util.isValidCPF
-import bernardo.com.br.blueshoes.view.FormFragment
+import bernardo.com.br.blueshoes.view.config.ConfigFormFragment
 import com.santalu.maskedittext.MaskEditText
 import kotlinx.android.synthetic.main.fragment_config_new_credit_card.*
 
 
-class ConfigNewCreditCardFragment :
-    FormFragment(),
+class FormCreditCardFragment :
+    ConfigFormFragment(),
     View.OnFocusChangeListener {
 
-    companion object{
-        const val TAB_TITLE = R.string.config_credit_cards_tab_new
-    }
+    override fun title()
+            = R.string.config_credit_cards_tab_new
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

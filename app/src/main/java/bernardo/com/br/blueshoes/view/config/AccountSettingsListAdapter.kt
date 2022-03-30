@@ -10,10 +10,10 @@ import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.domain.AccountSettingItem
 import bernardo.com.br.blueshoes.domain.User
 
-class AccountSettingsItemsAdapter(
+class AccountSettingsListAdapter(
         private val items : List<AccountSettingItem>
     )
-    : RecyclerView.Adapter<AccountSettingsItemsAdapter.ViewHolder>() {
+    : RecyclerView.Adapter<AccountSettingsListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

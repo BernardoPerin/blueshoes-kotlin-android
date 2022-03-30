@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentPagerAdapter
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-class ConfigCreditCardsSectionsAdapter(
+class CreditCardsSectionsAdapter(
         val context: Context,
         fm: FragmentManager
     ) : FragmentPagerAdapter(fm) {
@@ -20,15 +20,15 @@ class ConfigCreditCardsSectionsAdapter(
 
     override fun getItem(position: Int)
         = when( position ){
-            CREDIT_CARDS_PAGE_POS -> ConfigCreditCardsListFragment()
-            else -> ConfigNewCreditCardFragment()
+            CREDIT_CARDS_PAGE_POS -> CreditCardsListFragment()
+            else -> FormCreditCardFragment()
         }
 
     override fun getPageTitle(position: Int)
         = context.getString(
             when( position ){
-                CREDIT_CARDS_PAGE_POS -> ConfigCreditCardsListFragment.TAB_TITLE
-                else -> ConfigNewCreditCardFragment.TAB_TITLE
+                CREDIT_CARDS_PAGE_POS -> CreditCardsListFragment.TAB_TITLE
+                else -> FormCreditCardFragment.TAB_TITLE
             }
         )
 

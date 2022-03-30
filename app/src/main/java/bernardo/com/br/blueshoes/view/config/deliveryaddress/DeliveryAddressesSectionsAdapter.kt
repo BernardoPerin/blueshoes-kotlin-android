@@ -1,4 +1,4 @@
-package bernardo.com.br.blueshoes.view.config.connectiondata
+package bernardo.com.br.blueshoes.view.config.deliveryaddress
 
 import android.content.Context
 import androidx.fragment.app.FragmentManager
@@ -8,27 +8,27 @@ import androidx.fragment.app.FragmentPagerAdapter
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-class ConfigConnectionDataSectionsAdapter(
+class DeliveryAddressesSectionsAdapter(
         val context: Context,
         fm: FragmentManager
     ) : FragmentPagerAdapter(fm) {
 
     companion object{
         const val TOTAL_PAGES = 2
-        const val EMAIL_PAGE_POS = 0
+        const val HOST_DELIVERY_ADDRESSES_PAGE_POS  = 0
     }
 
     override fun getItem(position: Int)
         = when( position ){
-            EMAIL_PAGE_POS -> ConfigEmailFragment()
-            else -> ConfigPasswordFragment()
+        HOST_DELIVERY_ADDRESSES_PAGE_POS  -> DeliveryAddressHostFragment()
+            else -> FormNewDeliveryAddressFragment()
         }
 
     override fun getPageTitle(position: Int)
         = context.getString(
             when( position ){
-                EMAIL_PAGE_POS -> ConfigEmailFragment.TAB_TITLE
-                else -> ConfigPasswordFragment.TAB_TITLE
+                HOST_DELIVERY_ADDRESSES_PAGE_POS  -> DeliveryAddressesListFragment.TAB_TITLE
+                else -> FormNewDeliveryAddressFragment.TAB_TITLE
             }
         )
 

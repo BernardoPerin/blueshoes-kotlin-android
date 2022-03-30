@@ -1,12 +1,14 @@
-package bernardo.com.br.blueshoes.view.config.deliveryaddress
+package bernardo.com.br.blueshoes.view.config.creditcards
 
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
 import bernardo.com.br.blueshoes.R
+import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_tabs_user_config.*
 
-class ConfigDeliveryAddressesActivity : AppCompatActivity() {
+class CreditCardsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,38 +21,24 @@ class ConfigDeliveryAddressesActivity : AppCompatActivity() {
         window.setBackgroundDrawableResource( R.drawable.bg_activity )
 
         val sectionsPagerAdapter =
-            ConfigDeliveryAddressesSectionsAdapter(
+            CreditCardsSectionsAdapter(
                 this,
                 supportFragmentManager
             )
 
-        view_pager.adapter = sectionsPagerAdapter
+        val viewPager: ViewPager = findViewById(R.id.view_pager)
+        viewPager.adapter = sectionsPagerAdapter
 
-        tabs.setupWithViewPager(view_pager)
+        val tabs: TabLayout = findViewById(R.id.tabs)
+        tabs.setupWithViewPager(viewPager)
     }
 
     override fun onOptionsItemSelected( item: MenuItem ): Boolean {
         if ( item.itemId == android.R.id.home ) {
-            onBackPressed()
+            finish()
             return true
         }
 
         return super.onOptionsItemSelected(item)
     }
-
-    override fun onBackPressed() {
-        val fragmentsInStack = supportFragmentManager.backStackEntryCount
-
-        if( fragmentsInStack > 0
-            && isNewDeliveryAddressFormNotInScreen() ){
-
-            supportFragmentManager.popBackStack()
-        }
-        else{
-            finish()
-        }
-    }
-
-    private fun isNewDeliveryAddressFormNotInScreen()
-        = view_pager.currentItem != ConfigNewDeliveryAddressFragment.PAGER_POS
 }
