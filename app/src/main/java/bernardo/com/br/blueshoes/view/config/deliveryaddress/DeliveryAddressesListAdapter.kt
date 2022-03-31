@@ -11,9 +11,10 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.domain.DeliveryAddress
+import bernardo.com.br.blueshoes.view.config.ConfigListFragment
 
 class DeliveryAddressesListAdapter(
-    private val fragment: DeliveryAddressesListFragment,
+    private val fragment: ConfigListFragment,
     private val items : MutableList<DeliveryAddress>
     )
     : RecyclerView.Adapter<DeliveryAddressesListAdapter.ViewHolder>() {
@@ -94,7 +95,7 @@ class DeliveryAddressesListAdapter(
         }
 
         private fun toRemove( position: Int ){
-            fragment.callbacksToRemoveItem(
+            fragment.callbacksToChangeItem(
                 {
                     status ->
                         btUpdate.isEnabled = !status
