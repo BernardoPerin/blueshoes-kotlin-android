@@ -4,30 +4,19 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import bernardo.com.br.blueshoes.R
+import bernardo.com.br.blueshoes.view.config.ConfigFormActivity
+import bernardo.com.br.blueshoes.view.config.ConfigSectionsAdapter
 import kotlinx.android.synthetic.main.activity_tabs_user_config.*
 
-class DeliveryAddressesActivity : AppCompatActivity() {
+class DeliveryAddressesActivity : ConfigFormActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tabs_user_config)
-        setSupportActionBar( toolbar )
-
-        supportActionBar?.setDisplayHomeAsUpEnabled( true )
-        supportActionBar?.setDisplayShowHomeEnabled( true )
-
-        window.setBackgroundDrawableResource( R.drawable.bg_activity )
-
-        val sectionsPagerAdapter =
-            DeliveryAddressesSectionsAdapter(
+    override fun getSectionsAdapter()
+        = ConfigSectionsAdapter(
                 this,
-                supportFragmentManager
-            )
-
-        view_pager.adapter = sectionsPagerAdapter
-
-        tabs.setupWithViewPager(view_pager)
-    }
+            supportFragmentManager,
+            DeliveryAddressHostFragment(),
+            FormNewDeliveryAddressFragment()
+        )
 
     override fun onOptionsItemSelected( item: MenuItem ): Boolean {
         if ( item.itemId == android.R.id.home ) {
@@ -53,4 +42,5 @@ class DeliveryAddressesActivity : AppCompatActivity() {
 
     private fun isNewDeliveryAddressFormNotInScreen()
         = view_pager.currentItem != FormNewDeliveryAddressFragment.PAGER_POS
+
 }

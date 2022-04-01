@@ -15,9 +15,7 @@ class DeliveryAddressHostFragment :
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
+        savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(
             R.layout.fragment_config_delivery_address_host,

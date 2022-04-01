@@ -5,40 +5,21 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import bernardo.com.br.blueshoes.R
+import bernardo.com.br.blueshoes.view.config.ConfigFormActivity
+import bernardo.com.br.blueshoes.view.config.ConfigSectionsAdapter
+import bernardo.com.br.blueshoes.view.config.deliveryaddress.DeliveryAddressHostFragment
+import bernardo.com.br.blueshoes.view.config.deliveryaddress.FormNewDeliveryAddressFragment
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_tabs_user_config.*
 
-class CreditCardsActivity : AppCompatActivity() {
+class CreditCardsActivity : ConfigFormActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tabs_user_config)
-        setSupportActionBar( toolbar )
+    override fun getSectionsAdapter()
+        = ConfigSectionsAdapter(
+            this,
+            supportFragmentManager,
+            CreditCardsListFragment(),
+            FormCreditCardFragment()
+        )
 
-        supportActionBar?.setDisplayHomeAsUpEnabled( true )
-        supportActionBar?.setDisplayShowHomeEnabled( true )
-
-        window.setBackgroundDrawableResource( R.drawable.bg_activity )
-
-        val sectionsPagerAdapter =
-            CreditCardsSectionsAdapter(
-                this,
-                supportFragmentManager
-            )
-
-        val viewPager: ViewPager = findViewById(R.id.view_pager)
-        viewPager.adapter = sectionsPagerAdapter
-
-        val tabs: TabLayout = findViewById(R.id.tabs)
-        tabs.setupWithViewPager(viewPager)
-    }
-
-    override fun onOptionsItemSelected( item: MenuItem ): Boolean {
-        if ( item.itemId == android.R.id.home ) {
-            finish()
-            return true
-        }
-
-        return super.onOptionsItemSelected(item)
-    }
 }

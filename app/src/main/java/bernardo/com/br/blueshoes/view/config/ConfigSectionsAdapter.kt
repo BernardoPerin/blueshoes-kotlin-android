@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 
 
 class ConfigSectionsAdapter(
-        val context: Context,
+        private val context: Context,
         fm: FragmentManager,
         private vararg val fragments : ConfigFormFragment
     ) : FragmentPagerAdapter(fm) {
