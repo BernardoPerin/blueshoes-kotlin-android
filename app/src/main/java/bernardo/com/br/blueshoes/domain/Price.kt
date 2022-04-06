@@ -5,13 +5,13 @@ import bernardo.com.br.blueshoes.R
 import java.util.*
 
 class Price(
-    val normal: Float,
-    val parcels: Int,
+    private val normal: Float,
+    private val parcels: Int,
     val hasDiscount: Boolean,
-    val withDiscount: Float
+    private val withDiscount: Float
 ) {
 
-    fun getNormalLabel( context: Context)
+    fun getNormalLabel( context: Context )
         = String.format(
             Locale.GERMAN,
             "%s %.2f",
@@ -19,7 +19,7 @@ class Price(
             normal
         )
 
-    fun getWithDiscountlLabel( context: Context)
+    fun getWithDiscountlLabel( context: Context )
         = String.format(
         Locale.GERMAN,
         "%s %.2f",
@@ -27,4 +27,26 @@ class Price(
         withDiscount
     )
 
+    fun getPercentDiscountlLabel() : String{
+        val percent = ((withDiscount - normal) / normal) * 100
+
+        return String.format("-%d%%", percent.toInt())
+    }
+
+    fun getParcelsLabel( context: Context ) : String{
+        val priceParcel = if( hasDiscount )
+                withDiscount / parcels
+            else
+                normal / parcels
+
+        return String.format(
+            Locale.GERMAN,
+            "%s %dx %s %s %.2f",
+            context.getString( R.string.in_until ),
+            parcels,
+            context.getString( R.string.of ),
+            context.getString( R.string.money_sign ),
+            priceParcel
+        )
+    }
 }
