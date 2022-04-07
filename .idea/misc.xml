@@ -8,6 +8,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/BlueShoes/app/src/main/res/drawable/tv_strike_through.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/BlueShoes/app/src/main/res/layout/account_settings_item.xml" value="0.358695652173913" />
         <entry key="..\:/AndroidStudioProjects/BlueShoes/app/src/main/res/layout/activity_account_settings.xml" value="0.358695652173913" />
         <entry key="..\:/AndroidStudioProjects/BlueShoes/app/src/main/res/layout/activity_tabs_user_config.xml" value="0.25" />
@@ -20,6 +21,7 @@
         <entry key="..\:/AndroidStudioProjects/BlueShoes/app/src/main/res/layout/fragment_config_list.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/BlueShoes/app/src/main/res/layout/fragment_config_new_credit_card.xml" value="0.17831813576494426" />
         <entry key="..\:/AndroidStudioProjects/BlueShoes/app/src/main/res/layout/fragment_config_update_delivery_address.xml" value="0.17831813576494426" />
+        <entry key="..\:/AndroidStudioProjects/BlueShoes/app/src/main/res/layout/shoes_item.xml" value="0.33" />
       </map>
     </option>
   </component>
