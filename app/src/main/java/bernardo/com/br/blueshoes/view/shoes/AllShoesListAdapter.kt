@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.domain.CreditCard
+import bernardo.com.br.blueshoes.domain.Price
 import bernardo.com.br.blueshoes.domain.Shoes
 import com.squareup.picasso.Picasso
 
@@ -104,8 +105,29 @@ class AllShoesListAdapter(
                 .load( shoes.brand.logo )
                 .into( ivBrand )
             ivBrand.contentDescription = shoes.brand.label
+
+            setPrice( shoes.price )
         }
 
+        private fun setPrice( price: Price ){
+
+            if( price.hasDiscount ){
+                llDiscount.visibility = View.VISIBLE
+                tvPriceWithoutDiscount.visibility = View.VISIBLE
+
+                tvPriceCurrent.text = price.getWithDiscountlLabel( context )
+                tvPriceWithoutDiscount.text = price.getNormalLabel( context )
+                tvDiscount.text = price.getPercentDiscountlLabel()
+            }
+            else{
+                llDiscount.visibility = View.GONE
+                tvPriceWithoutDiscount.visibility = View.GONE
+
+                tvPriceCurrent.text = price.getNormalLabel( context )
+            }
+
+            tvPriceParcels.text = price.getParcelsLabel( context )
+        }
     }
 
 }
