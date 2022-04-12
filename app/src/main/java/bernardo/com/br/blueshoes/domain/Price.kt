@@ -28,7 +28,7 @@ class Price(
     )
 
     fun getPercentDiscountlLabel() : String{
-        val percent = ((withDiscount - normal) / normal) * 100
+        val percent = (( normal - withDiscount ) / normal) * 100
 
         return String.format("-%d%%", percent.toInt())
     }

@@ -23,6 +23,7 @@ import bernardo.com.br.blueshoes.util.NavMenuItemDetailsLookup
 import bernardo.com.br.blueshoes.util.NavMenuItemKeyProvider
 import bernardo.com.br.blueshoes.util.NavMenuItemPredicate
 import bernardo.com.br.blueshoes.view.config.AccountSettingsActivity
+import bernardo.com.br.blueshoes.view.shoes.AllShoesListFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.nav_header_user_logged.*
@@ -192,7 +193,7 @@ class MainActivity :
         if( fragment == null ){
             var fragId = intent.getIntExtra( FRAGMENT_ID, 0)
             if( fragId == 0 ){
-                fragId =  R.id.item_about
+                fragId =  R.id.item_all_shoes
             }
 
             fragment = getFragment( fragId.toLong() )
@@ -207,7 +208,7 @@ class MainActivity :
             R.id.item_about.toLong() -> AboutFragment()
             R.id.item_contact.toLong() -> ContactFragment()
             R.id.item_privacy_policy.toLong() -> PrivacyPolicyFragment()
-            else -> AboutFragment()
+            else -> AllShoesListFragment()
         }
     }
 
@@ -252,9 +253,9 @@ class MainActivity :
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        when (item.itemId) {
-            R.id.action_settings -> return true
-            else -> return super.onOptionsItemSelected(item)
+        return when (item.itemId) {
+            R.id.action_settings -> true
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -269,7 +270,7 @@ class MainActivity :
     }
 
     inner class SelectObserverNavMenuItems(
-        val callbackRemoveSelection: ()->Unit
+        private val callbackRemoveSelection: ()->Unit
     ) : SelectionTracker.SelectionObserver<Long>(){
 
         /*

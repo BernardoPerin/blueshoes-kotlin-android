@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import bernardo.com.br.blueshoes.R
 import bernardo.com.br.blueshoes.domain.CreditCard
 import bernardo.com.br.blueshoes.domain.Price
+import bernardo.com.br.blueshoes.domain.Rate
 import bernardo.com.br.blueshoes.domain.Shoes
 import com.squareup.picasso.Picasso
 
@@ -45,8 +46,7 @@ class AllShoesListAdapter(
     override fun getItemCount() = shoesItems.size
 
     inner class ViewHolder( itemView: View )
-        : RecyclerView.ViewHolder( itemView ),
-            View.OnClickListener{
+        : RecyclerView.ViewHolder( itemView ){
 
         private val context : Context
 
@@ -107,6 +107,8 @@ class AllShoesListAdapter(
             ivBrand.contentDescription = shoes.brand.label
 
             setPrice( shoes.price )
+
+            setRate( shoes.rate )
         }
 
         private fun setPrice( price: Price ){
@@ -127,6 +129,17 @@ class AllShoesListAdapter(
             }
 
             tvPriceParcels.text = price.getParcelsLabel( context )
+        }
+
+        private fun setRate( rate: Rate ){
+            tvNumRates.text = rate.getNumCommentsLabel()
+
+            ivRateStar1.setImageResource( rate.getStarResource( 1 ) )
+            ivRateStar2.setImageResource( rate.getStarResource( 2 ) )
+            ivRateStar3.setImageResource( rate.getStarResource( 3 ) )
+            ivRateStar4.setImageResource( rate.getStarResource( 4 ) )
+            ivRateStar5.setImageResource( rate.getStarResource( 5 ) )
+
         }
     }
 

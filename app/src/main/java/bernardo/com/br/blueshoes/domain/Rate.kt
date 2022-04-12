@@ -8,7 +8,7 @@ class Rate(
     private val stars: Float,
     private val numComments: Int
 ) {
-    fun getNumComments()
+    fun getNumCommentsLabel()
         = String.format("(%d)", numComments)
 
     fun getStarResource( starPosition: Int )
